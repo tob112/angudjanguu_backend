@@ -20,10 +20,17 @@
         'BlurAdmin.auth',
         'BlurAdmin.theme'
         // 'BlurAdmin.pages'
-    ]).config(routeConfig);
+    ]).config(config);
 
 
-    function routeConfig($urlRouterProvider, baSidebarServiceProvider, $authProvider, $stateProvider) {
+    function config($urlRouterProvider, baSidebarServiceProvider, $authProvider, $stateProvider, $httpProvider) {
+
+
+        $authProvider.loginUrl = '/auth/login/';
+
+
+        $httpProvider.defaults.xsrfCookieName = 'csrftoken';
+        $httpProvider.defaults.xsrfHeaderName = 'X-CSRFToken';
 
 
         $urlRouterProvider.otherwise(function ($injector) {
@@ -34,7 +41,7 @@
         });
 
         $stateProvider
-            .state('appi', {
+            .state('BlurAdmin', {
                 views: {
                     'layout': {
                         templateUrl: 'pages/layout.html'

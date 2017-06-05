@@ -7,16 +7,36 @@
     'use strict';
 
     angular.module('BlurAdmin.auth')
-        .controller('LoginController', LoginController);
+        .controller('LoginCtrl', LoginCtrl);
 
     /** @ngInject */
-    function LoginController($scope, $auth, $state) {
+    function LoginCtrl($scope, $auth, $state) {
 
 
+        var vm = this;
 
-    console.log("Hallo")
+
+        vm.login = function () {
+
+            var credentials = {
+                username: vm.username,
+                email: vm.email,
+                password: vm.password
+
+            };
 
 
+            $auth.login(credentials).then(function (data) {
+
+
+                alert('worked');
+                //
+                // $state.go('BlurAdmin', {})
+
+            })
+
+
+        }
 
 
     }
