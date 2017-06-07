@@ -16,7 +16,7 @@
         'BlurAdmin.pages.charts',
         'BlurAdmin.pages.maps',
         'BlurAdmin.pages.profile',
-        'BlurAdmin.pages.auth'
+        'BlurAdmin.pages.admin'
     ])
         .config(routeConfig);
 
@@ -29,39 +29,12 @@
         // $urlRouterProvider.otherwise('/dashboard');
 
         baSidebarServiceProvider.addStaticItem({
-            title: 'Pages',
+            title: 'Benutzerverwaltung',
             icon: 'ion-document',
-            subMenu: [{
-                title: 'Sign In',
-                fixedHref: 'auth.html',
-                blank: true
-            }, {
-                title: 'Sign Up',
-                fixedHref: 'reg.html',
-                blank: true
-            }, {
-                title: 'User Profile',
-                stateRef: 'profile'
-            }, {
-                title: '404 Page',
-                fixedHref: '404.html',
-                blank: true
-            }]
+            stateRef: 'app.admin'
+
         });
-        baSidebarServiceProvider.addStaticItem({
-            title: 'Menu Level 1',
-            icon: 'ion-ios-more',
-            subMenu: [{
-                title: 'Menu Level 1.1',
-                disabled: true
-            }, {
-                title: 'Menu Level 1.2',
-                subMenu: [{
-                    title: 'Menu Level 1.2.1',
-                    disabled: true
-                }]
-            }]
-        });
+
     }
 
 })();

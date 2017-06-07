@@ -18,8 +18,8 @@
 
 
         'BlurAdmin.auth',
-        'BlurAdmin.theme'
-        // 'BlurAdmin.pages'
+        'BlurAdmin.theme',
+        'BlurAdmin.pages'
     ]).config(config);
 
 
@@ -37,16 +37,13 @@
             var $state = $injector.get('$state');
 
 
-            $state.go('auth');
+            $state.go('app.dashboard');
         });
 
         $stateProvider
-            .state('BlurAdmin', {
-                views: {
-                    'layout': {
-                        templateUrl: 'pages/layout.html'
-                    }
-                }
+            .state('app', {
+                templateUrl: 'static/app/pages/layout.html'
+
             })
 
 
