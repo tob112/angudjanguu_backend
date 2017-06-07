@@ -28,10 +28,7 @@
 
             $auth.login(credentials).then(function (data) {
 
-
-                alert('worked');
-                //
-                // $state.go('BlurAdmin', {})
+                $state.go('app.dashboard', {})
 
             })
 
