@@ -22,6 +22,8 @@
                 }
             });
 
+        // $urlRouterProvider.when('/admin');
+
     }
 
 })();

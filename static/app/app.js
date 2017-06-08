@@ -37,7 +37,7 @@
             var $state = $injector.get('$state');
 
 
-            $state.go('app.dashboard');
+            $state.go('app.admin');
         });
 
         $stateProvider

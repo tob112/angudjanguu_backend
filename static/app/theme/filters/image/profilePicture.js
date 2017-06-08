@@ -12,7 +12,6 @@
     function profilePicture(layoutPaths) {
         return function (input, ext) {
             ext = ext || 'png';
-            console.log(layoutPaths.images.profile + input + '.' + ext);
             return layoutPaths.images.profile + input + '.' + ext;
         };
     }

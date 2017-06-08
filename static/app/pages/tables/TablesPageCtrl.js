@@ -664,7 +664,7 @@
     $scope.statuses = [
       {value: 1, text: 'Good'},
       {value: 2, text: 'Awesome'},
-      {value: 3, text: 'Excellent'},
+      {value: 3, text: 'Excellent'}
     ];
 
     $scope.groups = [
@@ -695,6 +695,7 @@
     };
 
     $scope.addUser = function() {
+        console.log("hallo");
       $scope.inserted = {
         id: $scope.users.length+1,
         name: '',
