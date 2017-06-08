@@ -12,159 +12,181 @@
     function UserTableCtrl($scope, $filter, editableOptions, editableThemes) {
 
 
-        $scope.smartTablePageSize = 10;
+        $scope.smartTablePageSize = 15;
 
         $scope.smartTableData = [
             {
                 id: 1,
                 username: 'Mark',
-                email: 'Otto',
-                group: '@mdo'
-
-            },
-            {
+                email: 'mdo@gmail.com',
+                group: 3
+            }, {
                 id: 2,
-                username: 'Jacob',
-                email: 'Thornton',
-                group: '@fat'
-
-            },
-            {
+                username: 'Tobi',
+                email: 'tobi@gmail.com',
+                group: 1
+            }, {
                 id: 3,
-                username: 'Larry',
-                email: 'Bird',
-                group: '@twitter'
-
+                username: 'Klaus',
+                email: 'klaus@gmail.com',
+                group: 4
+            }, {
+                id: 3,
+                username: 'Klaus',
+                email: 'klaus@gmail.com',
+                group: 4
+            }, {
+                id: 3,
+                username: 'Klaus',
+                email: 'klaus@gmail.com',
+                group: 4
+            }, {
+                id: 3,
+                username: 'Klaus',
+                email: 'klaus@gmail.com',
+                group: 4
+            }, {
+                id: 3,
+                username: 'Klaus',
+                email: 'klaus@gmail.com',
+                group: 4
+            }, {
+                id: 3,
+                username: 'Klaus',
+                email: 'klaus@gmail.com',
+                group: 4
+            }, {
+                id: 3,
+                username: 'Klaus',
+                email: 'klaus@gmail.com',
+                group: 4
+            }, {
+                id: 3,
+                username: 'Klaus',
+                email: 'klaus@gmail.com',
+                group: 4
+            }, {
+                id: 3,
+                username: 'Klaus',
+                email: 'klaus@gmail.com',
+                group: 4
+            }, {
+                id: 3,
+                username: 'Klaus',
+                email: 'klaus@gmail.com',
+                group: 4
+            }, {
+                id: 3,
+                username: 'Klaus',
+                email: 'klaus@gmail.com',
+                group: 4
+            }, {
+                id: 3,
+                username: 'Klaus',
+                email: 'klaus@gmail.com',
+                group: 4
+            }, {
+                id: 3,
+                username: 'Klaus',
+                email: 'klaus@gmail.com',
+                group: 4
+            }, {
+                id: 3,
+                username: 'Klaus',
+                email: 'klaus@gmail.com',
+                group: 4
+            }, {
+                id: 3,
+                username: 'Klaus',
+                email: 'klaus@gmail.com',
+                group: 4
+            }, {
+                id: 3,
+                username: 'Klaus',
+                email: 'klaus@gmail.com',
+                group: 4
+            }, {
+                id: 3,
+                username: 'Klaus',
+                email: 'klaus@gmail.com',
+                group: 4
+            }, {
+                id: 3,
+                username: 'Klaus',
+                email: 'klaus@gmail.com',
+                group: 4
+            }, {
+                id: 3,
+                username: 'Klaus',
+                email: 'klaus@gmail.com',
+                group: 4
+            }, {
+                id: 3,
+                username: 'Klaus',
+                email: 'klaus@gmail.com',
+                group: 4
+            }, {
+                id: 3,
+                username: 'Klaus',
+                email: 'klaus@gmail.com',
+                group: 4
+            }, {
+                id: 3,
+                username: 'Klaus',
+                email: 'klaus@gmail.com',
+                group: 4
+            }, {
+                id: 3,
+                username: 'Klaus',
+                email: 'klaus@gmail.com',
+                group: 4
+            }, {
+                id: 3,
+                username: 'Klaus',
+                email: 'klaus@gmail.com',
+                group: 4
             }
-
         ];
 
-
-        $scope.editableTableData = $scope.smartTableData.slice(0, 36);
-
-        // $scope.peopleTableData = [
-        //     {
-        //         id: 1,
-        //         username: 'Mark',
-        //         email: 'Otto',
-        //         username: '@mdo',
-        //         email: 'mdo@gmail.com',
-        //         age: '28',
-        //         status: 'info'
-        //     },
-        //     {
-        //         id: 2,
-        //         username: 'Jacob',
-        //         email: 'Thornton',
-        //         username: '@fat',
-        //         email: 'fat@yandex.ru',
-        //         age: '45',
-        //         status: 'primary'
-        //     },
-        //     {
-        //         id: 3,
-        //         username: 'Larry',
-        //         email: 'Bird',
-        //         username: '@twitter',
-        //         email: 'twitter@outlook.com',
-        //         age: '18',
-        //         status: 'success'
-        //     },
-        //     {
-        //         id: 4,
-        //         username: 'John',
-        //         email: 'Snow',
-        //         username: '@snow',
-        //         email: 'snow@gmail.com',
-        //         age: '20',
-        //         status: 'danger'
-        //     },
-        //     {
-        //         id: 5,
-        //         username: 'Jack',
-        //         email: 'Sparrow',
-        //         username: '@jack',
-        //         email: 'jack@yandex.ru',
-        //         age: '30',
-        //         status: 'warning'
-        //     }
-        // ];
-
-        $scope.metricsTableData = [
-            {
-                image: 'app/browsers/chrome.svg',
-                browser: 'Google Chrome',
-                visits: '10,392',
-                isVisitsUp: true,
-                purchases: '4,214',
-                isPurchasesUp: true,
-                percent: '45%',
-                isPercentUp: true
-            },
-            {
-                image: 'app/browsers/firefox.svg',
-                browser: 'Mozilla Firefox',
-                visits: '7,873',
-                isVisitsUp: true,
-                purchases: '3,031',
-                isPurchasesUp: false,
-                percent: '28%',
-                isPercentUp: true
-            },
-            {
-                image: 'app/browsers/ie.svg',
-                browser: 'Internet Explorer',
-                visits: '5,890',
-                isVisitsUp: false,
-                purchases: '2,102',
-                isPurchasesUp: false,
-                percent: '17%',
-                isPercentUp: false
-            },
-            {
-                image: 'app/browsers/safari.svg',
-                browser: 'Safari',
-                visits: '4,001',
-                isVisitsUp: false,
-                purchases: '1,001',
-                isPurchasesUp: false,
-                percent: '14%',
-                isPercentUp: true
-            },
-            {
-                image: 'app/browsers/opera.svg',
-                browser: 'Opera',
-                visits: '1,833',
-                isVisitsUp: true,
-                purchases: '83',
-                isPurchasesUp: true,
-                percent: '5%',
-                isPercentUp: false
-            }
-        ];
 
         $scope.users = [
             {
-                id: 1,
-                username: 'Mark',
-                email: 'Otto',
-                group: '@mdo'
-
-            },
-            {
-                id: 2,
-                username: 'Jacob',
-                email: 'Thornton',
-                group: '@fat'
-
-            },
-            {
-                id: 3,
-                username: 'Larry',
-                email: 'Bird',
-                group: '@twitter'
-
+                "id": 1,
+                "username": 'Tobi',
+                "email": 'hallo@test.de',
+                "group": 4
+            }, {
+                "id": 1,
+                "username": 'Klaus',
+                "email": 'hallo@test.de',
+                "group": 4
+            }, {
+                "id": 1,
+                "username": 'POaul',
+                "email": 'hallo@test.de',
+                "group": 4
+            }, {
+                "id": 1,
+                "username": 'Korva',
+                "email": 'hallo@test.de',
+                "group": 4
+            }, {
+                "id": 1,
+                "username": 'FGSsd',
+                "email": 'hallo@test.de',
+                "group": 4
+            }, {
+                "id": 1,
+                "username": 'Tens',
+                "email": 'hallo@test.de',
+                "group": 4
+            }, {
+                "id": 1,
+                "username": 'Bob',
+                "email": 'hallo@test.de',
+                "group": 4
             }
+
 
         ];
 
@@ -181,14 +203,6 @@
                 var selected = $filter('filter')($scope.groups, {id: user.group});
                 return selected.length ? selected[0].text : 'Not set';
             } else return 'Not set'
-        };
-
-        $scope.showStatus = function (user) {
-            var selected = [];
-            if (user.status) {
-                selected = $filter('filter')($scope.statuses, {value: user.status});
-            }
-            return selected.length ? selected[0].text : 'Not set';
         };
 
 
