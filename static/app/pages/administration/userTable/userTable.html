@@ -4,10 +4,10 @@
             <div class="horizontal-scroll">
                 <div ba-panel ba-panel-title="Benutzerliste" ba-panel-class="with-scroll">
 
-                    <table class="table" st-table="smartTableData" st-pipe="callServer">
+                    <table st-table="displayedCollection" st-safe-src="rowCollection" class="table" st-pipe="callServer">
                         <thead>
                         <tr class="sortable">
-                            <th class="table-id" st-sort="id">#</th>
+                            <th>#</th>
                             <th st-sort="username">Username</th>
                             <th st-sort="email">E-Mail</th>
                             <th st-sort="group">Gruppe</th>
@@ -28,7 +28,7 @@
                         </tr>
                         </thead>
                         <tbody ng-show="!isLoading">
-                        <tr ng-repeat="user in userData">
+                        <tr ng-repeat="user in displayedCollection">
                             <td>{{$index + 1}}</td>
                             <td>
                                <span editable-text="user.username" e-name="username" e-form="rowform" e-required>

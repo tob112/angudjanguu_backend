@@ -12,23 +12,28 @@
     function UserTableCtrl($scope, $filter, editableOptions, editableThemes, UserApiFactory) {
 
 
-        $scope.callServer = function callServer() {
-            /* Ruft die api für die Userliste auf. Tabelle wird erst
-             // angezeigt nachdem die Daten geladen werden.
-             //
-             */
+        $scope.rowCollection = [];
+        $scope.displayedCollection = [];
+
+
+        /* Ruft die api für die Userliste auf. Tabelle wird erst
+         // angezeigt nachdem die Daten geladen werden.
+         //
+         */
+        var callServer = function callServer(tableState) {
+
             $scope.isLoading = true;
+
             UserApiFactory.list().then(function (users) {
-                console.log(JSON.stringify(users.plain()));
-                $scope.userData = users;
+                $scope.isLoading = false;
+                $scope.rowCollection = users;
+
             });
+            $scope.smartTablePageSize = 15;
 
-
-            $scope.isLoading = false
         };
 
-
-        $scope.smartTablePageSize = 15;
+        callServer();
 
 
         $scope.groups = [
