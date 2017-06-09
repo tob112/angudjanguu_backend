@@ -24,6 +24,14 @@ urlpatterns = [
     url(r'^$', TemplateView.as_view(template_name='index.html'),
         name='home'),
 
-    url(r'^auth/', include('rest_auth.urls')),
+
+
+    url(r'^api/v1/auth/', include('rest_auth.urls')),
+    # password/reset
+    # password/reset/confirm
+    # login
+    # logout
+    # user
+    # password
 
 ]

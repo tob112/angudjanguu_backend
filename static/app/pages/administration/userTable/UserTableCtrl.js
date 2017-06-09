@@ -9,8 +9,17 @@
         .controller('UserTableCtrl', UserTableCtrl);
 
     /** @ngInject */
-    function UserTableCtrl($scope, $filter, editableOptions, editableThemes) {
+    function UserTableCtrl($scope, $filter, editableOptions, editableThemes, UserApiFactory) {
 
+
+        UserApiFactory.list().then(function (users) {
+
+            $scope.users = users.plain();
+
+            console.log(users);
+
+
+        });
 
         $scope.smartTablePageSize = 15;
 
@@ -19,7 +28,7 @@
                 id: 1,
                 username: 'Mark',
                 email: 'mdo@gmail.com',
-                group: 3
+                group: 'admin'
             }, {
                 id: 2,
                 username: 'Tobi',
