@@ -4,7 +4,7 @@
             <div class="horizontal-scroll">
                 <div ba-panel ba-panel-title="Benutzerliste" ba-panel-class="with-scroll">
 
-                    <table class="table" st-table="smartTableData">
+                    <table class="table" st-table="smartTableData" st-pipe="callServer">
                         <thead>
                         <tr class="sortable">
                             <th class="table-id" st-sort="id" st-sort-default="true">#</th>
@@ -27,7 +27,7 @@
                             <th></th>
                         </tr>
                         </thead>
-                        <tbody>
+                        <tbody ng-show="!isLoading">
                         <tr ng-repeat="user in smartTableData">
                             <td>{{$index}}</td>
                             <td>
@@ -76,6 +76,11 @@
 
                         </tr>
                         </tbody>
+                        <tbody ng-show="isLoading">
+                        <tr>
+                            <td colspan="4" class="text-center">Loading ...</td>
+                        </tr>
+                        </tbody>
 
 
                         <tfoot>
@@ -93,4 +98,3 @@
     </div>
 </div>
 
-{{isLoading}}

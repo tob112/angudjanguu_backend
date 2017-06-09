@@ -12,143 +12,290 @@
     function UserTableCtrl($scope, $filter, editableOptions, editableThemes, UserApiFactory) {
 
 
-        UserApiFactory.list().then(function (users) {
+        $scope.callServer = function callServer(tableState) {
 
 
-        });
-        $scope.smartTableData = [
-            {
-                id: 1,
-                username: 'Mark',
-                email: 'mdo@gmail.com',
-                group: 'admin'
-            }, {
-                id: 2,
-                username: 'Tobi',
-                email: 'tobi@gmail.com',
-                group: 1
-            }, {
-                id: 3,
-                username: 'Klaus',
-                email: 'klaus@gmail.com',
-                group: 4
-            }, {
-                id: 3,
-                username: 'Klaus',
-                email: 'klaus@gmail.com',
-                group: 4
-            }, {
-                id: 3,
-                username: 'Klaus',
-                email: 'klaus@gmail.com',
-                group: 4
-            }, {
-                id: 3,
-                username: 'Klaus',
-                email: 'klaus@gmail.com',
-                group: 4
-            }, {
-                id: 3,
-                username: 'Klaus',
-                email: 'klaus@gmail.com',
-                group: 4
-            }, {
-                id: 3,
-                username: 'Klaus',
-                email: 'klaus@gmail.com',
-                group: 4
-            }, {
-                id: 3,
-                username: 'Klaus',
-                email: 'klaus@gmail.com',
-                group: 4
-            }, {
-                id: 3,
-                username: 'Klaus',
-                email: 'klaus@gmail.com',
-                group: 4
-            }, {
-                id: 3,
-                username: 'Klaus',
-                email: 'klaus@gmail.com',
-                group: 4
-            }, {
-                id: 3,
-                username: 'Klaus',
-                email: 'klaus@gmail.com',
-                group: 4
-            }, {
-                id: 3,
-                username: 'Klaus',
-                email: 'klaus@gmail.com',
-                group: 4
-            }, {
-                id: 3,
-                username: 'Klaus',
-                email: 'klaus@gmail.com',
-                group: 4
-            }, {
-                id: 3,
-                username: 'Klaus',
-                email: 'klaus@gmail.com',
-                group: 4
-            }, {
-                id: 3,
-                username: 'Klaus',
-                email: 'klaus@gmail.com',
-                group: 4
-            }, {
-                id: 3,
-                username: 'Klaus',
-                email: 'klaus@gmail.com',
-                group: 4
-            }, {
-                id: 3,
-                username: 'Klaus',
-                email: 'klaus@gmail.com',
-                group: 4
-            }, {
-                id: 3,
-                username: 'Klaus',
-                email: 'klaus@gmail.com',
-                group: 4
-            }, {
-                id: 3,
-                username: 'Klaus',
-                email: 'klaus@gmail.com',
-                group: 4
-            }, {
-                id: 3,
-                username: 'Klaus',
-                email: 'klaus@gmail.com',
-                group: 4
-            }, {
-                id: 3,
-                username: 'Klaus',
-                email: 'klaus@gmail.com',
-                group: 4
-            }, {
-                id: 3,
-                username: 'Klaus',
-                email: 'klaus@gmail.com',
-                group: 4
-            }, {
-                id: 3,
-                username: 'Klaus',
-                email: 'klaus@gmail.com',
-                group: 4
-            }, {
-                id: 3,
-                username: 'Klaus',
-                email: 'klaus@gmail.com',
-                group: 4
-            }, {
-                id: 3,
-                username: 'Klaus',
-                email: 'klaus@gmail.com',
-                group: 4
-            }
-        ];
+            $scope.isLoading = true;
+
+            UserApiFactory.list().then(function (users) {
+
+                // $scope.smartTableData = [
+                //     {
+                //         id: 1,
+                //         username: 'Mark',
+                //         email: 'mdo@gmail.com',
+                //         group: 'admin'
+                //     }, {
+                //         id: 2,
+                //         username: 'Tobi',
+                //         email: 'tobi@gmail.com',
+                //         group: 1
+                //     }, {
+                //         id: 3,
+                //         username: 'Klaus',
+                //         email: 'klaus@gmail.com',
+                //         group: 4
+                //     }, {
+                //         id: 3,
+                //         username: 'Klaus',
+                //         email: 'klaus@gmail.com',
+                //         group: 4
+                //     }, {
+                //         id: 3,
+                //         username: 'Klaus',
+                //         email: 'klaus@gmail.com',
+                //         group: 4
+                //     }, {
+                //         id: 3,
+                //         username: 'Klaus',
+                //         email: 'klaus@gmail.com',
+                //         group: 4
+                //     }, {
+                //         id: 3,
+                //         username: 'Klaus',
+                //         email: 'klaus@gmail.com',
+                //         group: 4
+                //     }, {
+                //         id: 3,
+                //         username: 'Klaus',
+                //         email: 'klaus@gmail.com',
+                //         group: 4
+                //     }, {
+                //         id: 3,
+                //         username: 'Klaus',
+                //         email: 'klaus@gmail.com',
+                //         group: 4
+                //     }, {
+                //         id: 3,
+                //         username: 'Klaus',
+                //         email: 'klaus@gmail.com',
+                //         group: 4
+                //     }, {
+                //         id: 3,
+                //         username: 'Klaus',
+                //         email: 'klaus@gmail.com',
+                //         group: 4
+                //     }, {
+                //         id: 3,
+                //         username: 'Klaus',
+                //         email: 'klaus@gmail.com',
+                //         group: 4
+                //     }, {
+                //         id: 3,
+                //         username: 'Klaus',
+                //         email: 'klaus@gmail.com',
+                //         group: 4
+                //     }, {
+                //         id: 3,
+                //         username: 'Klaus',
+                //         email: 'klaus@gmail.com',
+                //         group: 4
+                //     }, {
+                //         id: 3,
+                //         username: 'Klaus',
+                //         email: 'klaus@gmail.com',
+                //         group: 4
+                //     }, {
+                //         id: 3,
+                //         username: 'Klaus',
+                //         email: 'klaus@gmail.com',
+                //         group: 4
+                //     }, {
+                //         id: 3,
+                //         username: 'Klaus',
+                //         email: 'klaus@gmail.com',
+                //         group: 4
+                //     }, {
+                //         id: 3,
+                //         username: 'Klaus',
+                //         email: 'klaus@gmail.com',
+                //         group: 4
+                //     }, {
+                //         id: 3,
+                //         username: 'Klaus',
+                //         email: 'klaus@gmail.com',
+                //         group: 4
+                //     }, {
+                //         id: 3,
+                //         username: 'Klaus',
+                //         email: 'klaus@gmail.com',
+                //         group: 4
+                //     }, {
+                //         id: 3,
+                //         username: 'Klaus',
+                //         email: 'klaus@gmail.com',
+                //         group: 4
+                //     }, {
+                //         id: 3,
+                //         username: 'Klaus',
+                //         email: 'klaus@gmail.com',
+                //         group: 4
+                //     }, {
+                //         id: 3,
+                //         username: 'Klaus',
+                //         email: 'klaus@gmail.com',
+                //         group: 4
+                //     }, {
+                //         id: 3,
+                //         username: 'Klaus',
+                //         email: 'klaus@gmail.com',
+                //         group: 4
+                //     }, {
+                //         id: 3,
+                //         username: 'Klaus',
+                //         email: 'klaus@gmail.com',
+                //         group: 4
+                //     }, {
+                //         id: 3,
+                //         username: 'Klaus',
+                //         email: 'klaus@gmail.com',
+                //         group: 4
+                //     }
+                // ];
+
+                $scope.smartTableData = users.plain();
+
+
+                $scope.isLoading = false
+            });
+
+
+        };
+
+
+        // $scope.smartTableData = [
+        //     {
+        //         id: 1,
+        //         username: 'Mark',
+        //         email: 'mdo@gmail.com',
+        //         group: 'admin'
+        //     }, {
+        //         id: 2,
+        //         username: 'Tobi',
+        //         email: 'tobi@gmail.com',
+        //         group: 1
+        //     }, {
+        //         id: 3,
+        //         username: 'Klaus',
+        //         email: 'klaus@gmail.com',
+        //         group: 4
+        //     }, {
+        //         id: 3,
+        //         username: 'Klaus',
+        //         email: 'klaus@gmail.com',
+        //         group: 4
+        //     }, {
+        //         id: 3,
+        //         username: 'Klaus',
+        //         email: 'klaus@gmail.com',
+        //         group: 4
+        //     }, {
+        //         id: 3,
+        //         username: 'Klaus',
+        //         email: 'klaus@gmail.com',
+        //         group: 4
+        //     }, {
+        //         id: 3,
+        //         username: 'Klaus',
+        //         email: 'klaus@gmail.com',
+        //         group: 4
+        //     }, {
+        //         id: 3,
+        //         username: 'Klaus',
+        //         email: 'klaus@gmail.com',
+        //         group: 4
+        //     }, {
+        //         id: 3,
+        //         username: 'Klaus',
+        //         email: 'klaus@gmail.com',
+        //         group: 4
+        //     }, {
+        //         id: 3,
+        //         username: 'Klaus',
+        //         email: 'klaus@gmail.com',
+        //         group: 4
+        //     }, {
+        //         id: 3,
+        //         username: 'Klaus',
+        //         email: 'klaus@gmail.com',
+        //         group: 4
+        //     }, {
+        //         id: 3,
+        //         username: 'Klaus',
+        //         email: 'klaus@gmail.com',
+        //         group: 4
+        //     }, {
+        //         id: 3,
+        //         username: 'Klaus',
+        //         email: 'klaus@gmail.com',
+        //         group: 4
+        //     }, {
+        //         id: 3,
+        //         username: 'Klaus',
+        //         email: 'klaus@gmail.com',
+        //         group: 4
+        //     }, {
+        //         id: 3,
+        //         username: 'Klaus',
+        //         email: 'klaus@gmail.com',
+        //         group: 4
+        //     }, {
+        //         id: 3,
+        //         username: 'Klaus',
+        //         email: 'klaus@gmail.com',
+        //         group: 4
+        //     }, {
+        //         id: 3,
+        //         username: 'Klaus',
+        //         email: 'klaus@gmail.com',
+        //         group: 4
+        //     }, {
+        //         id: 3,
+        //         username: 'Klaus',
+        //         email: 'klaus@gmail.com',
+        //         group: 4
+        //     }, {
+        //         id: 3,
+        //         username: 'Klaus',
+        //         email: 'klaus@gmail.com',
+        //         group: 4
+        //     }, {
+        //         id: 3,
+        //         username: 'Klaus',
+        //         email: 'klaus@gmail.com',
+        //         group: 4
+        //     }, {
+        //         id: 3,
+        //         username: 'Klaus',
+        //         email: 'klaus@gmail.com',
+        //         group: 4
+        //     }, {
+        //         id: 3,
+        //         username: 'Klaus',
+        //         email: 'klaus@gmail.com',
+        //         group: 4
+        //     }, {
+        //         id: 3,
+        //         username: 'Klaus',
+        //         email: 'klaus@gmail.com',
+        //         group: 4
+        //     }, {
+        //         id: 3,
+        //         username: 'Klaus',
+        //         email: 'klaus@gmail.com',
+        //         group: 4
+        //     }, {
+        //         id: 3,
+        //         username: 'Klaus',
+        //         email: 'klaus@gmail.com',
+        //         group: 4
+        //     }, {
+        //         id: 3,
+        //         username: 'Klaus',
+        //         email: 'klaus@gmail.com',
+        //         group: 4
+        //     }
+        // ];
 
         $scope.displayTable = true;
 
