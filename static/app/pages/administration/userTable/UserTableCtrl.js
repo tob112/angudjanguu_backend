@@ -12,292 +12,21 @@
     function UserTableCtrl($scope, $filter, editableOptions, editableThemes, UserApiFactory) {
 
 
-        $scope.callServer = function callServer(tableState) {
-
-
+        $scope.callServer = function callServer() {
+            /* Ruft die api für die Userliste auf. Tabelle wird erst
+             // angezeigt nachdem die Daten geladen werden.
+             //
+             */
             $scope.isLoading = true;
-
             UserApiFactory.list().then(function (users) {
-
-                // $scope.smartTableData = [
-                //     {
-                //         id: 1,
-                //         username: 'Mark',
-                //         email: 'mdo@gmail.com',
-                //         group: 'admin'
-                //     }, {
-                //         id: 2,
-                //         username: 'Tobi',
-                //         email: 'tobi@gmail.com',
-                //         group: 1
-                //     }, {
-                //         id: 3,
-                //         username: 'Klaus',
-                //         email: 'klaus@gmail.com',
-                //         group: 4
-                //     }, {
-                //         id: 3,
-                //         username: 'Klaus',
-                //         email: 'klaus@gmail.com',
-                //         group: 4
-                //     }, {
-                //         id: 3,
-                //         username: 'Klaus',
-                //         email: 'klaus@gmail.com',
-                //         group: 4
-                //     }, {
-                //         id: 3,
-                //         username: 'Klaus',
-                //         email: 'klaus@gmail.com',
-                //         group: 4
-                //     }, {
-                //         id: 3,
-                //         username: 'Klaus',
-                //         email: 'klaus@gmail.com',
-                //         group: 4
-                //     }, {
-                //         id: 3,
-                //         username: 'Klaus',
-                //         email: 'klaus@gmail.com',
-                //         group: 4
-                //     }, {
-                //         id: 3,
-                //         username: 'Klaus',
-                //         email: 'klaus@gmail.com',
-                //         group: 4
-                //     }, {
-                //         id: 3,
-                //         username: 'Klaus',
-                //         email: 'klaus@gmail.com',
-                //         group: 4
-                //     }, {
-                //         id: 3,
-                //         username: 'Klaus',
-                //         email: 'klaus@gmail.com',
-                //         group: 4
-                //     }, {
-                //         id: 3,
-                //         username: 'Klaus',
-                //         email: 'klaus@gmail.com',
-                //         group: 4
-                //     }, {
-                //         id: 3,
-                //         username: 'Klaus',
-                //         email: 'klaus@gmail.com',
-                //         group: 4
-                //     }, {
-                //         id: 3,
-                //         username: 'Klaus',
-                //         email: 'klaus@gmail.com',
-                //         group: 4
-                //     }, {
-                //         id: 3,
-                //         username: 'Klaus',
-                //         email: 'klaus@gmail.com',
-                //         group: 4
-                //     }, {
-                //         id: 3,
-                //         username: 'Klaus',
-                //         email: 'klaus@gmail.com',
-                //         group: 4
-                //     }, {
-                //         id: 3,
-                //         username: 'Klaus',
-                //         email: 'klaus@gmail.com',
-                //         group: 4
-                //     }, {
-                //         id: 3,
-                //         username: 'Klaus',
-                //         email: 'klaus@gmail.com',
-                //         group: 4
-                //     }, {
-                //         id: 3,
-                //         username: 'Klaus',
-                //         email: 'klaus@gmail.com',
-                //         group: 4
-                //     }, {
-                //         id: 3,
-                //         username: 'Klaus',
-                //         email: 'klaus@gmail.com',
-                //         group: 4
-                //     }, {
-                //         id: 3,
-                //         username: 'Klaus',
-                //         email: 'klaus@gmail.com',
-                //         group: 4
-                //     }, {
-                //         id: 3,
-                //         username: 'Klaus',
-                //         email: 'klaus@gmail.com',
-                //         group: 4
-                //     }, {
-                //         id: 3,
-                //         username: 'Klaus',
-                //         email: 'klaus@gmail.com',
-                //         group: 4
-                //     }, {
-                //         id: 3,
-                //         username: 'Klaus',
-                //         email: 'klaus@gmail.com',
-                //         group: 4
-                //     }, {
-                //         id: 3,
-                //         username: 'Klaus',
-                //         email: 'klaus@gmail.com',
-                //         group: 4
-                //     }, {
-                //         id: 3,
-                //         username: 'Klaus',
-                //         email: 'klaus@gmail.com',
-                //         group: 4
-                //     }
-                // ];
-
-                $scope.smartTableData = users.plain();
-
-
-                $scope.isLoading = false
+                console.log(JSON.stringify(users.plain()));
+                $scope.userData = users;
             });
 
 
+            $scope.isLoading = false
         };
 
-
-        // $scope.smartTableData = [
-        //     {
-        //         id: 1,
-        //         username: 'Mark',
-        //         email: 'mdo@gmail.com',
-        //         group: 'admin'
-        //     }, {
-        //         id: 2,
-        //         username: 'Tobi',
-        //         email: 'tobi@gmail.com',
-        //         group: 1
-        //     }, {
-        //         id: 3,
-        //         username: 'Klaus',
-        //         email: 'klaus@gmail.com',
-        //         group: 4
-        //     }, {
-        //         id: 3,
-        //         username: 'Klaus',
-        //         email: 'klaus@gmail.com',
-        //         group: 4
-        //     }, {
-        //         id: 3,
-        //         username: 'Klaus',
-        //         email: 'klaus@gmail.com',
-        //         group: 4
-        //     }, {
-        //         id: 3,
-        //         username: 'Klaus',
-        //         email: 'klaus@gmail.com',
-        //         group: 4
-        //     }, {
-        //         id: 3,
-        //         username: 'Klaus',
-        //         email: 'klaus@gmail.com',
-        //         group: 4
-        //     }, {
-        //         id: 3,
-        //         username: 'Klaus',
-        //         email: 'klaus@gmail.com',
-        //         group: 4
-        //     }, {
-        //         id: 3,
-        //         username: 'Klaus',
-        //         email: 'klaus@gmail.com',
-        //         group: 4
-        //     }, {
-        //         id: 3,
-        //         username: 'Klaus',
-        //         email: 'klaus@gmail.com',
-        //         group: 4
-        //     }, {
-        //         id: 3,
-        //         username: 'Klaus',
-        //         email: 'klaus@gmail.com',
-        //         group: 4
-        //     }, {
-        //         id: 3,
-        //         username: 'Klaus',
-        //         email: 'klaus@gmail.com',
-        //         group: 4
-        //     }, {
-        //         id: 3,
-        //         username: 'Klaus',
-        //         email: 'klaus@gmail.com',
-        //         group: 4
-        //     }, {
-        //         id: 3,
-        //         username: 'Klaus',
-        //         email: 'klaus@gmail.com',
-        //         group: 4
-        //     }, {
-        //         id: 3,
-        //         username: 'Klaus',
-        //         email: 'klaus@gmail.com',
-        //         group: 4
-        //     }, {
-        //         id: 3,
-        //         username: 'Klaus',
-        //         email: 'klaus@gmail.com',
-        //         group: 4
-        //     }, {
-        //         id: 3,
-        //         username: 'Klaus',
-        //         email: 'klaus@gmail.com',
-        //         group: 4
-        //     }, {
-        //         id: 3,
-        //         username: 'Klaus',
-        //         email: 'klaus@gmail.com',
-        //         group: 4
-        //     }, {
-        //         id: 3,
-        //         username: 'Klaus',
-        //         email: 'klaus@gmail.com',
-        //         group: 4
-        //     }, {
-        //         id: 3,
-        //         username: 'Klaus',
-        //         email: 'klaus@gmail.com',
-        //         group: 4
-        //     }, {
-        //         id: 3,
-        //         username: 'Klaus',
-        //         email: 'klaus@gmail.com',
-        //         group: 4
-        //     }, {
-        //         id: 3,
-        //         username: 'Klaus',
-        //         email: 'klaus@gmail.com',
-        //         group: 4
-        //     }, {
-        //         id: 3,
-        //         username: 'Klaus',
-        //         email: 'klaus@gmail.com',
-        //         group: 4
-        //     }, {
-        //         id: 3,
-        //         username: 'Klaus',
-        //         email: 'klaus@gmail.com',
-        //         group: 4
-        //     }, {
-        //         id: 3,
-        //         username: 'Klaus',
-        //         email: 'klaus@gmail.com',
-        //         group: 4
-        //     }, {
-        //         id: 3,
-        //         username: 'Klaus',
-        //         email: 'klaus@gmail.com',
-        //         group: 4
-        //     }
-        // ];
-
-        $scope.displayTable = true;
 
         $scope.smartTablePageSize = 15;
 
@@ -308,13 +37,13 @@
             {id: 3, text: 'vip'},
             {id: 4, text: 'admin'}
         ];
-
-        $scope.showGroup = function (user) {
-            if (user.group && $scope.groups.length) {
-                var selected = $filter('filter')($scope.groups, {id: user.group});
-                return selected.length ? selected[0].text : 'Not set';
-            } else return 'Not set'
-        };
+        //
+        // $scope.showGroup = function (user) {
+        //     if (user.group && $scope.groups.length) {
+        //         var selected = $filter('filter')($scope.groups, {id: user.group});
+        //         return selected.length ? selected[0].text : 'Not set';
+        //     } else return 'Not set'
+        // };
 
 
         $scope.removeUser = function (index) {

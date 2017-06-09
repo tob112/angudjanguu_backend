@@ -7,7 +7,7 @@
                     <table class="table" st-table="smartTableData" st-pipe="callServer">
                         <thead>
                         <tr class="sortable">
-                            <th class="table-id" st-sort="id" st-sort-default="true">#</th>
+                            <th class="table-id" st-sort="id">#</th>
                             <th st-sort="username">Username</th>
                             <th st-sort="email">E-Mail</th>
                             <th st-sort="group">Gruppe</th>
@@ -28,8 +28,8 @@
                         </tr>
                         </thead>
                         <tbody ng-show="!isLoading">
-                        <tr ng-repeat="user in smartTableData">
-                            <td>{{$index}}</td>
+                        <tr ng-repeat="user in userData">
+                            <td>{{$index + 1}}</td>
                             <td>
                                <span editable-text="user.username" e-name="username" e-form="rowform" e-required>
                                   {{ user.username }}
@@ -42,12 +42,8 @@
                                     {{ user.email }}
                                 </a>
                             </td>
-                            <td class="select-td">
-                                <span editable-select="user.group" e-name="group" onshow="loadGroups()" e-form="rowform"
-                                      e-selectpicker
-                                      e-ng-options="g.id as g.text for g in groups">
-                                  {{ showGroup(user) }}
-                                </span>
+                            <td>
+                                {{user.groups[0].name}}
                             </td>
                             <td>
                                 <form editable-form name="rowform" ng-show="rowform.$visible"
