@@ -29,7 +29,7 @@
                         </thead>
                         <tbody>
                         <tr ng-repeat="user in smartTableData">
-                            <td class="table-id">{{ user.id }}</td>
+                            <td>{{$index}}</td>
                             <td>
                                <span editable-text="user.username" e-name="username" e-form="rowform" e-required>
                                   {{ user.username }}
@@ -76,6 +76,8 @@
 
                         </tr>
                         </tbody>
+
+
                         <tfoot>
                         <tr>
                             <td colspan="6" class="text-center">
@@ -90,3 +92,5 @@
         </div>
     </div>
 </div>
+
+{{isLoading}}

@@ -14,15 +14,8 @@
 
         UserApiFactory.list().then(function (users) {
 
-            $scope.users = users.plain();
-
-            console.log(users);
-
 
         });
-
-        $scope.smartTablePageSize = 15;
-
         $scope.smartTableData = [
             {
                 id: 1,
@@ -157,47 +150,9 @@
             }
         ];
 
+        $scope.displayTable = true;
 
-        $scope.users = [
-            {
-                "id": 1,
-                "username": 'Tobi',
-                "email": 'hallo@test.de',
-                "group": 4
-            }, {
-                "id": 1,
-                "username": 'Klaus',
-                "email": 'hallo@test.de',
-                "group": 4
-            }, {
-                "id": 1,
-                "username": 'POaul',
-                "email": 'hallo@test.de',
-                "group": 4
-            }, {
-                "id": 1,
-                "username": 'Korva',
-                "email": 'hallo@test.de',
-                "group": 4
-            }, {
-                "id": 1,
-                "username": 'FGSsd',
-                "email": 'hallo@test.de',
-                "group": 4
-            }, {
-                "id": 1,
-                "username": 'Tens',
-                "email": 'hallo@test.de',
-                "group": 4
-            }, {
-                "id": 1,
-                "username": 'Bob',
-                "email": 'hallo@test.de',
-                "group": 4
-            }
-
-
-        ];
+        $scope.smartTablePageSize = 15;
 
 
         $scope.groups = [

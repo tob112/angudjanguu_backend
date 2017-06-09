@@ -9,7 +9,7 @@ angular.module('BlurAdmin')
 function UserApiFactory($http, Restangular) {
 
 
-    var __users = Restangular.all('api/v1/auth/user/');
+    var __users = Restangular.all('api/v1/auth/users/');
 
 
     __users.list = function () {

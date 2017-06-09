@@ -16,17 +16,21 @@ Including another URLconf
 from django.conf.urls import url, include
 from django.contrib import admin
 from django.views.generic.base import TemplateView
-
+from rest_framework import routers
 from angudjanguu import settings
+from users import views
+
+router = routers.DefaultRouter()
+router.register(r'users', views.UserViewSet)
 
 urlpatterns = [
+
     url(r'^admin/', admin.site.urls),
     url(r'^$', TemplateView.as_view(template_name='index.html'),
         name='home'),
 
-
-
     url(r'^api/v1/auth/', include('rest_auth.urls')),
+    url(r'^api/v1/auth/', include(router.urls)),
     # password/reset
     # password/reset/confirm
     # login
