@@ -13,19 +13,13 @@
                 templateUrl: 'static/app/auth/login/login.html',
                 title: 'Authentication',
                 controller: 'LoginCtrl',
-                controllerAs: 'vm',
-                sidebarMeta: {
-                    order: 0
-                }
+                controllerAs: 'vm'
             }).state('reg', {
             url: '/register',
             templateUrl: 'static/app/tables/smart/tables.html',
             title: 'Register',
             controller: 'RegisterController',
-            controllerAs: 'vm',
-            sidebarMeta: {
-                order: 100
-            }
+            controllerAs: 'vm'
         });
         // $urlRouterProvider.when('/login', '/register');
     }

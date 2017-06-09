@@ -28,12 +28,12 @@
 
         // $urlRouterProvider.otherwise('/dashboard');
 
-        baSidebarServiceProvider.addStaticItem({
-            title: 'Benutzerverwaltung',
-            icon: 'ion-document',
-            stateRef: 'app.admin'
-
-        });
+        // baSidebarServiceProvider.addStaticItem({
+        //     title: 'Benutzerverwaltung',
+        //     icon: 'ion-document',
+        //     stateRef: 'app.admin'
+        //
+        // });
 
     }
 

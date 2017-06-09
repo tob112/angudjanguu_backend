@@ -20,10 +20,14 @@
                 var isMenuCollapsed = shouldMenuBeCollapsed();
 
                 this.getMenuItems = function () {
+
                     var states = defineMenuItemStates();
+
+
                     var menuItems = states.filter(function (item) {
                         return item.level == 0;
                     });
+
 
                     menuItems.forEach(function (item) {
                         var children = states.filter(function (child) {
@@ -32,9 +36,10 @@
                         item.subMenu = children.length ? children : null;
                     });
 
-                    // return menuItems.concat(staticMenuItems);
 
-                    return staticMenuItems
+                    return menuItems.concat(staticMenuItems);
+
+                    // return staticMenuItems
                 };
 
                 this.shouldMenuBeCollapsed = shouldMenuBeCollapsed;
@@ -71,14 +76,15 @@
                             return s.sidebarMeta;
                         })
                         .map(function (s) {
+                            //removes app. vom name
                             var meta = s.sidebarMeta;
                             return {
                                 name: s.name,
                                 title: s.title,
-                                level: (s.name.match(/\./g) || []).length,
+                                level: (s.name.replace('app.', '').match(/\./g) || []).length,
                                 order: meta.order,
                                 icon: meta.icon,
-                                stateRef: s.name,
+                                stateRef: s.name
                             };
                         })
                         .sort(function (a, b) {
