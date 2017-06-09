@@ -12,8 +12,8 @@
     function UserTableCtrl($scope, $filter, editableOptions, editableThemes, UserApiFactory) {
 
 
-        $scope.rowCollection = [];
-        $scope.displayedCollection = [];
+        $scope.userRowCollection = [];
+        $scope.userDisplayedCollection = [];
 
 
         /* Ruft die api für die Userliste auf. Tabelle wird erst
@@ -26,22 +26,16 @@
 
             UserApiFactory.list().then(function (users) {
                 $scope.isLoading = false;
-                $scope.rowCollection = users;
+                $scope.userRowCollection = users;
 
             });
-            $scope.smartTablePageSize = 15;
+            $scope.tablePageSize = 15;
 
         };
 
         callServer();
 
 
-        $scope.groups = [
-            {id: 1, text: 'user'},
-            {id: 2, text: 'customer'},
-            {id: 3, text: 'vip'},
-            {id: 4, text: 'admin'}
-        ];
         //
         // $scope.showGroup = function (user) {
         //     if (user.group && $scope.groups.length) {
@@ -52,7 +46,7 @@
 
 
         $scope.removeUser = function (index) {
-            $scope.users.splice(index, 1);
+            $scope.userRowCollection.splice(index, 1);
         };
 
         $scope.addUser = function () {

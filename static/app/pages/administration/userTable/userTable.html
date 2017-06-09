@@ -4,7 +4,8 @@
             <div class="horizontal-scroll">
                 <div ba-panel ba-panel-title="Benutzerliste" ba-panel-class="with-scroll">
 
-                    <table st-table="displayedCollection" st-safe-src="rowCollection" class="table" st-pipe="callServer">
+                    <table st-table="userDisplayedCollection" st-safe-src="userRowCollection" class="table"
+                           st-pipe="callServer">
                         <thead>
                         <tr class="sortable">
                             <th>#</th>
@@ -28,7 +29,7 @@
                         </tr>
                         </thead>
                         <tbody ng-show="!isLoading">
-                        <tr ng-repeat="user in displayedCollection">
+                        <tr ng-repeat="user in userDisplayedCollection">
                             <td>{{$index + 1}}</td>
                             <td>
                                <span editable-text="user.username" e-name="username" e-form="rowform" e-required>
@@ -82,7 +83,7 @@
                         <tfoot>
                         <tr>
                             <td colspan="6" class="text-center">
-                                <div st-pagination="" st-items-by-page="smartTablePageSize"
+                                <div st-pagination="" st-items-by-page="tablePageSize"
                                      st-displayed-pages="5"></div>
                             </td>
                         </tr>

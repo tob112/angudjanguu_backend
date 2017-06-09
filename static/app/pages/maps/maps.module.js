@@ -18,8 +18,8 @@
           title: 'Maps',
           sidebarMeta: {
             icon: 'ion-ios-location-outline',
-            order: 500,
-          },
+            order: 500
+          }
         })
         .state('maps.gmap', {
           url: '/gmap',
@@ -27,8 +27,8 @@
           controller: 'GmapPageCtrl',
           title: 'Google Maps',
           sidebarMeta: {
-            order: 0,
-          },
+            order: 0
+          }
         })
         .state('maps.leaflet', {
           url: '/leaflet',
@@ -36,8 +36,8 @@
           controller: 'LeafletPageCtrl',
           title: 'Leaflet Maps',
           sidebarMeta: {
-            order: 100,
-          },
+            order: 100
+          }
         })
         .state('maps.bubble', {
           url: '/bubble',
@@ -45,8 +45,8 @@
           controller: 'MapBubblePageCtrl',
           title: 'Bubble Maps',
           sidebarMeta: {
-            order: 200,
-          },
+            order: 200
+          }
         })
         .state('maps.line', {
           url: '/line',
@@ -54,8 +54,8 @@
           controller: 'MapLinesPageCtrl',
           title: 'Line Maps',
           sidebarMeta: {
-            order: 300,
-          },
+            order: 300
+          }
         });
   }
 
