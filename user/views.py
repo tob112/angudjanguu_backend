@@ -11,5 +11,7 @@ from serializers import UserSerializer
 
 
 class UserViewSet(viewsets.ModelViewSet):
+    # für die rest api -> user zugriff /users/username anstatt /users/pk
+    lookup_field = 'username'
     serializer_class = UserSerializer
     queryset = User.objects.all()

@@ -9,8 +9,14 @@ class GroupSerializer(serializers.ModelSerializer):
 
 
 class UserSerializer(serializers.ModelSerializer):
-    groups = GroupSerializer(many=True)
+    groups = GroupSerializer(many=True, read_only=True)
 
     class Meta:
         model = User
         fields = ('username', 'email', 'groups')
+
+        # def update(self, instance, validated_data):
+        #     instance.username = validated_data.get('username', instance.username)
+        #     instance.email = validated_data.get('email', instance.email)
+        #
+        #     instance.save()

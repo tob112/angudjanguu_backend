@@ -18,9 +18,9 @@ from django.contrib import admin
 from django.views.generic.base import TemplateView
 from rest_framework import routers
 from angudjanguu import settings
-from users import views
+from user import views
 
-router = routers.DefaultRouter()
+router = routers.SimpleRouter()
 router.register(r'users', views.UserViewSet)
 
 urlpatterns = [

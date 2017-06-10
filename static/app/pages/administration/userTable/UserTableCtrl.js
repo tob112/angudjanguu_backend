@@ -1,7 +1,3 @@
-/**
- * @author v.lugovksy
- * created on 16.12.2015
- */
 (function () {
     'use strict';
 
@@ -36,15 +32,6 @@
         callServer();
 
 
-        //
-        // $scope.showGroup = function (user) {
-        //     if (user.group && $scope.groups.length) {
-        //         var selected = $filter('filter')($scope.groups, {id: user.group});
-        //         return selected.length ? selected[0].text : 'Not set';
-        //     } else return 'Not set'
-        // };
-
-
         $scope.removeUser = function (index) {
             $scope.userRowCollection.splice(index, 1);
         };
@@ -58,6 +45,17 @@
             };
             $scope.users.push($scope.inserted);
         };
+
+
+        $scope.updateUser = function (originalUser) {
+            UserApiFactory.getUser(originalUser.username).then(function (updatedUser) {
+                updatedUser.username = originalUser.username;
+                updatedUser.email = originalUser.email;
+                updatedUser.save()
+            })
+
+        };
+
 
         editableOptions.theme = 'bs3';
         editableThemes['bs3'].submitTpl = '<button type="submit" class="btn btn-primary btn-with-icon"><i class="ion-checkmark-round"></i></button>';

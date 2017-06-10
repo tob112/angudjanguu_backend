@@ -23,10 +23,15 @@
     ]).config(config);
 
 
-    function config($urlRouterProvider, baSidebarServiceProvider, $authProvider, $stateProvider, $httpProvider) {
+    function config($urlRouterProvider, baSidebarServiceProvider, $authProvider, $stateProvider, $httpProvider, RestangularProvider) {
 
 
         $authProvider.loginUrl = '/auth/login/';
+        RestangularProvider.setBaseUrl('api/v1/');
+        RestangularProvider.setRequestSuffix('/');
+        RestangularProvider.setRestangularFields({
+            id: "username"
+        });
 
 
         $httpProvider.defaults.xsrfCookieName = 'csrftoken';

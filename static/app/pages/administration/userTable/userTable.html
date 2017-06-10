@@ -51,7 +51,8 @@
                                       class="form-buttons form-inline"
                                       shown="inserted == user">
                                     <button type="submit" ng-disabled="rowform.$waiting"
-                                            class="btn btn-primary editable-table-button btn-xs">
+                                            class="btn btn-primary editable-table-button btn-xs"
+                                            ng-click="updateUser(user)">
                                         Save
                                         item
                                     </button>
