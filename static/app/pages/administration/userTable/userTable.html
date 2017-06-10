@@ -9,6 +9,7 @@
                         <thead>
                         <tr class="sortable">
                             <th>#</th>
+                            <th st-sort="id">Id</th>
                             <th st-sort="username">Username</th>
                             <th st-sort="email">E-Mail</th>
                             <th st-sort="group">Gruppe</th>
@@ -16,6 +17,9 @@
                         </tr>
                         <tr>
                             <th></th>
+                            <th><input st-search="id" placeholder="Search Id"
+                                       class="input-sm form-control search-input"
+                                       type="search"/></th>
                             <th><input st-search="username" placeholder="Search username"
                                        class="input-sm form-control search-input"
                                        type="search"/></th>
@@ -31,6 +35,7 @@
                         <tbody ng-show="!isLoading">
                         <tr ng-repeat="user in userDisplayedCollection">
                             <td>{{$index + 1}}</td>
+                            <td> {{ user.id }}</td>
                             <td>
                                <span editable-text="user.username" e-name="username" e-form="rowform" e-required>
                                   {{ user.username }}

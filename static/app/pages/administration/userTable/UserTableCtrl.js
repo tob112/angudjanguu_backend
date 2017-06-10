@@ -48,7 +48,7 @@
 
 
         $scope.updateUser = function (originalUser) {
-            UserApiFactory.getUser(originalUser.username).then(function (updatedUser) {
+            UserApiFactory.getUser(originalUser.id).then(function (updatedUser) {
                 updatedUser.username = originalUser.username;
                 updatedUser.email = originalUser.email;
                 updatedUser.save()

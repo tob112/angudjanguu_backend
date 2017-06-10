@@ -27,11 +27,13 @@
 
 
         $authProvider.loginUrl = '/auth/login/';
+
+
         RestangularProvider.setBaseUrl('api/v1/');
         RestangularProvider.setRequestSuffix('/');
-        RestangularProvider.setRestangularFields({
-            id: "username"
-        });
+        // RestangularProvider.setRestangularFields({
+        //     id: "username"
+        // });
 
 
         $httpProvider.defaults.xsrfCookieName = 'csrftoken';
@@ -41,9 +43,9 @@
         $urlRouterProvider.otherwise(function ($injector) {
             var $state = $injector.get('$state');
 
-
             $state.go('app.admin');
         });
+
 
         $stateProvider
             .state('app', {
