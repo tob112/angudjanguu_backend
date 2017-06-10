@@ -7,6 +7,12 @@
                     <table st-table="userDisplayedCollection" st-safe-src="userRowCollection" class="table"
                            st-pipe="callServer">
                         <thead>
+                        <tr>
+
+                            <th colspan="3"><input st-search="" class="form-control" placeholder="search..."
+                                                   type="text"/></th>
+
+                        </tr>
                         <tr class="sortable">
                             <th>#</th>
                             <th st-sort="id">Id</th>
@@ -15,25 +21,7 @@
                             <th st-sort="group">Gruppe</th>
                             <th st-sort="test">Actions</th>
                         </tr>
-                        <tr>
-                            <th></th>
-                            <!--<th colspan="5"><input st-search="" class="form-control" placeholder="search..."-->
-                                                   <!--type="text"/></th>-->
 
-                            <th><input st-search="id" placeholder="Search Id"
-                            class="input-sm form-control search-input"
-                            type="search"/></th>
-                            <th><input st-search="username" placeholder="Search username"
-                            class="input-sm form-control search-input"
-                            type="search"/></th>
-                            <th><input st-search="email" placeholder="Search Last email"
-                            class="input-sm form-control search-input"
-                            type="search"/></th>
-                            <th><input st-search="group" placeholder="Search group"
-                            class="input-sm form-control search-input"
-                            type="search"/></th>
-                            <th></th>
-                        </tr>
                         </thead>
                         <tbody ng-show="!isLoading">
                         <tr ng-repeat="user in userDisplayedCollection">
