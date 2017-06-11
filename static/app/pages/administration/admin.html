@@ -33,11 +33,11 @@
                                 </span>
                             </td>
                             <td>
-
-                                <a ng-href="mailto:{{ user.email }}" editable-text="user.email" e-name="email"
-                                   e-form="rowform" e-required>
-                                    {{ user.email }}
+                                <a ng-href="mailto:{{ user.email }}" editable-email="user.email" e-name="email"
+                                   e-form="rowform" onbeforesave="checkEmail($data)" e-required>
+                                    {{ user.email}}
                                 </a>
+
                             </td>
                             <td>
                                 {{user.groups[0].name}}
@@ -45,10 +45,10 @@
                             <td>
                                 <form editable-form name="rowform" ng-show="rowform.$visible"
                                       class="form-buttons form-inline"
-                                      shown="inserted == user">
+                                      shown="inserted == user" onaftersave="saveUser(user,rowform)">
                                     <button type="submit" ng-disabled="rowform.$waiting"
                                             class="btn btn-primary editable-table-button btn-xs"
-                                            ng-click="updateUser(user)">
+                                            >
                                         Save
                                         item
                                     </button>

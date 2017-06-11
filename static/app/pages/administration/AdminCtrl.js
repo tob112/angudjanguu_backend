@@ -57,15 +57,35 @@
         };
 
 
-        $scope.updateUser = function (originalUser) {
-            UserApiFactory.getUser(originalUser.id).then(function (updatedUser) {
-                updatedUser.username = originalUser.username;
-                updatedUser.email = originalUser.email;
-                updatedUser.save()
-            })
+        // $scope.updateUser = function (originalUser) {
+        //     UserApiFactory.getUser(originalUser.id).then(function (updatedUser) {
+        //         updatedUser.username = originalUser.username;
+        //         updatedUser.email = originalUser.email;
+        //         updatedUser.save()
+        //     })
+        //
+        // };
 
+        $scope.checkEmail = function (email) {
+            var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+
+            if (!re.test(email)) {
+                return "Not a valid email adress";
+            }
         };
 
+
+        $scope.saveUser = function (user) {
+            UserApiFactory.getUser(user.id).then(function (updatedUser) {
+                updatedUser.username = user.username;
+                updatedUser.email = user.email;
+                updatedUser.put().then(function () {
+                    console.log("User saved");
+                }, function () {
+                    // $scope.rowform.$setError('username','lol')
+                });
+            });
+        };
 
         editableOptions.theme = 'bs3';
         editableThemes['bs3'].submitTpl = '<button type="submit" class="btn btn-primary btn-with-icon"><i class="ion-checkmark-round"></i></button>';
