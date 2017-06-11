@@ -9,7 +9,7 @@ angular.module('BlurAdmin')
 function UserApiFactory($http, Restangular) {
 
 
-    var baseUsers = Restangular.all('auth/users/');
+    var baseUsers = Restangular.all('auth/users');
 
 
     baseUsers.list = function () {
@@ -20,6 +20,11 @@ function UserApiFactory($http, Restangular) {
     baseUsers.getUser = function (username) {
         return baseUsers.get(username)
 
+    };
+
+
+    baseUsers.updateUser = function (user) {
+        return user.save();
     };
 
 

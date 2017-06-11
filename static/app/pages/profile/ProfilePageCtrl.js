@@ -9,7 +9,16 @@
         .controller('ProfilePageCtrl', ProfilePageCtrl);
 
     /** @ngInject */
-    function ProfilePageCtrl($scope, fileReader, $filter, $uibModal) {
+    function ProfilePageCtrl($scope, fileReader, $filter, $uibModal, AuthApiFactory) {
+
+
+        AuthApiFactory.getLoggedInUser().then(function (response) {
+            $scope.first_name = response.first_name;
+            $scope.last_name = response.last_name;
+            $scope.email = response.email;
+            $scope.username = response.username;
+
+        });
 
 
         $scope.unconnect = function (item) {
@@ -32,8 +41,6 @@
                     $scope.picture = result;
                 });
         };
-
-
 
 
     }

@@ -4,23 +4,23 @@
         <h3 class="with-line">Allgemeine Informationen</h3>
 
         <!--<div class="row">-->
-            <!--<div class="col-md-6">-->
-                <!--<div class="form-group row clearfix">-->
-                    <!--<label for="inputFirstName" class="col-sm-3 control-label">Picture</label>-->
+        <!--<div class="col-md-6">-->
+        <!--<div class="form-group row clearfix">-->
+        <!--<label for="inputFirstName" class="col-sm-3 control-label">Picture</label>-->
 
-                    <!--<div class="col-sm-9">-->
-                        <!--<div class="userpic">-->
-                            <!--<div class="userpic-wrapper">-->
-                                <!--<img ng-src="{{ picture }}" ng-click="uploadPicture()">-->
-                            <!--</div>-->
-                            <!--<i class="ion-ios-close-outline" ng-click="removePicture()" ng-if="!noPicture"></i>-->
-                            <!--<a href class="change-userpic" ng-click="uploadPicture()">Change Profile Picture</a>-->
-                            <!--<input type="file" ng-show="false" id="uploadFile" ng-file-select="onFileSelect($files)">-->
-                        <!--</div>-->
-                    <!--</div>-->
-                <!--</div>-->
-            <!--</div>-->
-            <!--<div class="col-md-6"></div>-->
+        <!--<div class="col-sm-9">-->
+        <!--<div class="userpic">-->
+        <!--<div class="userpic-wrapper">-->
+        <!--<img ng-src="{{ picture }}" ng-click="uploadPicture()">-->
+        <!--</div>-->
+        <!--<i class="ion-ios-close-outline" ng-click="removePicture()" ng-if="!noPicture"></i>-->
+        <!--<a href class="change-userpic" ng-click="uploadPicture()">Change Profile Picture</a>-->
+        <!--<input type="file" ng-show="false" id="uploadFile" ng-file-select="onFileSelect($files)">-->
+        <!--</div>-->
+        <!--</div>-->
+        <!--</div>-->
+        <!--</div>-->
+        <!--<div class="col-md-6"></div>-->
         <!--</div>-->
 
         <div class="row">
@@ -30,14 +30,14 @@
 
                     <div class="col-sm-9">
                         <input type="text" class="form-control" id="inputFirstName" placeholder=""
-                               value="{{ firstname}}">
+                               value="{{ first_name }}">
                     </div>
                 </div>
                 <div class="form-group row clearfix">
                     <label for="inputLastName" class="col-sm-3 control-label">Nachname</label>
 
                     <div class="col-sm-9">
-                        <input type="text" class="form-control" id="inputLastName" placeholder="" value="{{lastname}}">
+                        <input type="text" class="form-control" id="inputLastName" placeholder="" value="{{last_name}}">
                     </div>
                 </div>
             </div>
@@ -51,11 +51,11 @@
                 </div>
 
                 <div class="form-group row clearfix">
-                    <label for="platzhalter" class="col-sm-3 control-label">Platzhalter</label>
+                    <label for="platzhalter" class="col-sm-3 control-label">Username</label>
 
                     <div class="col-sm-9">
                         <input type="text" class="form-control" id="platzhalter" placeholder=""
-                               value="">
+                               value="{{username}}">
                     </div>
                 </div>
             </div>
@@ -93,23 +93,22 @@
 
                     <div class="col-sm-9">
                         <input type="email" class="form-control" id="inputEmail3" placeholder=""
-                               value="lol@lol.de">
+                               value="{{email}}">
                     </div>
                 </div>
                 <div class="form-group row clearfix">
                     <label for="inputPhone" class="col-sm-3 control-label">Telefon</label>
 
                     <div class="col-sm-9">
-                        <input type="text" class="form-control" id="inputPhone" placeholder="" value="123456">
+                        <input type="text" class="form-control" id="inputPhone" placeholder="" value="">
                     </div>
                 </div>
             </div>
             <div class="col-md-6">
                 <div class="form-group row clearfix">
-                    <label for="inputPhone" class="col-sm-3 control-label">Standort</label>
-
+                    <label for="location" class="col-sm-3 control-label">Standort</label>
                     <div class="col-sm-9">
-                        <input type="text" class="form-control" id="location" placeholder="" value="Darmstadt">
+                        <input type="text" class="form-control" id="location" placeholder="" value="">
                     </div>
                 </div>
             </div>

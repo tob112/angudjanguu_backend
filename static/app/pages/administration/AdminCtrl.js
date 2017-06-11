@@ -57,15 +57,6 @@
         };
 
 
-        // $scope.updateUser = function (originalUser) {
-        //     UserApiFactory.getUser(originalUser.id).then(function (updatedUser) {
-        //         updatedUser.username = originalUser.username;
-        //         updatedUser.email = originalUser.email;
-        //         updatedUser.save()
-        //     })
-        //
-        // };
-
         $scope.checkEmail = function (email) {
             var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
 
@@ -79,10 +70,10 @@
             UserApiFactory.getUser(user.id).then(function (updatedUser) {
                 updatedUser.username = user.username;
                 updatedUser.email = user.email;
-                updatedUser.put().then(function () {
+                UserApiFactory.updateUser(updatedUser).then(function () {
                     console.log("User saved");
-                }, function () {
-                    // $scope.rowform.$setError('username','lol')
+                }, function (response) {
+                    console.log(response)
                 });
             });
         };
