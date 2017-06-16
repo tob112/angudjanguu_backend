@@ -26,8 +26,7 @@ router.register(r'users', views.UserViewSet)
 urlpatterns = [
 
     url(r'^admin/', admin.site.urls),
-    url(r'^$', TemplateView.as_view(template_name='index.html'),
-        name='home'),
+
 
     url(r'^api/v1/auth/', include('rest_auth.urls')),
     url(r'^api/v1/auth/', include(router.urls)),
