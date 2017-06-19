@@ -18,18 +18,18 @@ from django.contrib import admin
 from django.views.generic.base import TemplateView
 from rest_framework import routers
 from angudjanguu import settings
-from user import views
+# from user import views
 
-router = routers.SimpleRouter()
-router.register(r'users', views.UserViewSet)
+# router = routers.SimpleRouter()
+# router.register(r'users', views.UserViewSet)
 
 urlpatterns = [
 
     url(r'^admin/', admin.site.urls),
 
 
-    url(r'^api/v1/auth/', include('rest_auth.urls')),
-    url(r'^api/v1/auth/', include(router.urls)),
+    # url(r'^api/v1/auth/', include('rest_auth.urls')),
+    # url(r'^api/v1/auth/', include(router.urls)),
     # password/reset
     # password/reset/confirm
     # login

@@ -9,12 +9,10 @@ https://docs.djangoproject.com/en/1.11/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/1.11/ref/settings/
 """
-
 import os
 
-# APPEND_SLASH = False
 
-# AUTH_USER_MODEL = 'angudjanguu.user'
+AUTH_USER_MODEL = 'authentication.User'
 
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
@@ -67,6 +65,7 @@ INSTALLED_APPS = [
     'rest_framework.authtoken',
     'rest_auth',
     'corsheaders',
+    'authentication'
 ]
 
 MIDDLEWARE = [
