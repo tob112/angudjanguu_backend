@@ -14,7 +14,7 @@ import os
 
 # APPEND_SLASH = False
 
-
+# AUTH_USER_MODEL = 'angudjanguu.user'
 
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
@@ -67,7 +67,6 @@ INSTALLED_APPS = [
     'rest_framework.authtoken',
     'rest_auth',
     'corsheaders',
-
 ]
 
 MIDDLEWARE = [
