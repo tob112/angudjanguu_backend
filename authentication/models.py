@@ -7,21 +7,18 @@ from django.utils.translation import ugettext_lazy as _
 from .managers import UserManager
 
 
-# Create your models here.
-
-
-
 
 class User(AbstractBaseUser):
     email = models.EmailField(_('email address'), unique=True)
     first_name = models.CharField(_('first name'), max_length=30, blank=True)
     last_name = models.CharField(_('last name'), max_length=30, blank=True)
     group = models.CharField(_('group'), max_length=20, default="standard")
-    is_admin = models.BooleanField(_('is admin'), default=False)
+
     created_at = models.DateTimeField(_('created at'), auto_now_add=True)
     updated_at = models.DateTimeField(_('updated at'), auto_now=True)
+
+    is_admin = models.BooleanField(_('is admin'), default=False)
     is_active = models.BooleanField(_('active'), default=True)
-    is_staff = models.BooleanField(default=False)
 
     objects = UserManager()
 
@@ -46,6 +43,7 @@ class User(AbstractBaseUser):
     def is_superuser(self):
         return self.is_admin
 
+    # change is_staff to is_admin für die admin seite
     @property
     def is_staff(self):
         return self.is_admin
