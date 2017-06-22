@@ -18,11 +18,12 @@ from django.contrib import admin
 from django.views.generic.base import TemplateView
 from rest_framework import routers
 from angudjanguu import settings
+from rest_framework.authtoken import views
 
 from authentication import views
 
 router = routers.SimpleRouter()
-router.register(r'users', views.UserViewset)
+router.register(r'users', views.UserListViewset)
 
 urlpatterns = [
 
@@ -30,7 +31,10 @@ urlpatterns = [
 
     url(r'^api/v1/', include(router.urls)),
 
-    # url(r'^api/v1/auth/', include('rest_auth.urls')),
+    url(r'^api/v1/auth/', include('rest_auth.urls')),
+
+    url(r'^api-token-auth/', views.obtain_auth_token)
+
     # url(r'^api/v1/auth/', include(router.urls)),
     # password/reset
     # password/reset/confirm

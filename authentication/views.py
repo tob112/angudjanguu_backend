@@ -5,9 +5,11 @@ from django.shortcuts import render
 from rest_framework import viewsets
 from authentication.models import User
 from authentication.serializers import UserSerializer
+from rest_framework import permissions
 
 
-class UserViewset(viewsets.ModelViewSet):
-    lookup_field = 'email'
+class UserListViewset(viewsets.ModelViewSet):
+    lookup_field = 'id'
     queryset = User.objects.all()
     serializer_class = UserSerializer
+    #permission_classes = (permissions.IsAuthenticated,)
