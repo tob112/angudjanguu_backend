@@ -18,15 +18,17 @@ from django.contrib import admin
 from django.views.generic.base import TemplateView
 from rest_framework import routers
 from angudjanguu import settings
-# from user import views
 
-# router = routers.SimpleRouter()
-# router.register(r'users', views.UserViewSet)
+from authentication import views
+
+router = routers.SimpleRouter()
+router.register(r'users', views.UserViewset)
 
 urlpatterns = [
 
     url(r'^admin/', admin.site.urls),
 
+    url(r'^api/v1/', include(router.urls)),
 
     # url(r'^api/v1/auth/', include('rest_auth.urls')),
     # url(r'^api/v1/auth/', include(router.urls)),
