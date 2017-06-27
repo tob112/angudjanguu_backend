@@ -19,9 +19,9 @@ from django.views.generic.base import TemplateView
 from rest_framework import routers
 from angudjanguu import settings
 from rest_framework.authtoken import views
-
+from rest_framework_jwt.views import obtain_jwt_token
 from authentication import views
-
+from rest_framework_jwt.views import refresh_jwt_token
 router = routers.SimpleRouter()
 router.register(r'users', views.UserListViewset)
 
@@ -30,10 +30,16 @@ urlpatterns = [
     url(r'^admin/', admin.site.urls),
 
     url(r'^api/v1/', include(router.urls)),
+    url(r'^api/v1/login/', obtain_jwt_token),
+    url(r'^api/v1/token-refresh/', refresh_jwt_token),
+
+
+
 
     url(r'^api/v1/auth/', include('rest_auth.urls')),
 
-    url(r'^api-token-auth/', views.obtain_auth_token)
+
+    # url(r'^api-token-auth/', views.obtain_auth_token)
 
     # url(r'^api/v1/auth/', include(router.urls)),
     # password/reset
