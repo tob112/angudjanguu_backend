@@ -17,7 +17,7 @@ class MessgroesseSerializer(serializers.ModelSerializer):
 
 class AnalysisSerializer(serializers.ModelSerializer):
     vectors = VectorSerializer(many=True, read_only=True)
-    messgroessen = MessgroesseSerializer(many=True, read_only=True)
+    messgroesen = MessgroesseSerializer(many=True, read_only=True)
 
     class Meta:
         model = Analysis
