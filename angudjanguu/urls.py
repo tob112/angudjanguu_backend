@@ -21,9 +21,13 @@ from angudjanguu import settings
 from rest_framework.authtoken import views
 from rest_framework_jwt.views import obtain_jwt_token
 from authentication import views
+from analysis import views as analysisviews
 from rest_framework_jwt.views import refresh_jwt_token
+
 router = routers.SimpleRouter()
 router.register(r'users', views.UserListViewset)
+
+router.register(r'analysis', analysisviews.AnalysisViewset)
 
 urlpatterns = [
 
@@ -33,11 +37,7 @@ urlpatterns = [
     url(r'^api/v1/login/', obtain_jwt_token),
     url(r'^api/v1/token-refresh/', refresh_jwt_token),
 
-
-
-
     url(r'^api/v1/auth/', include('rest_auth.urls')),
-
 
     # url(r'^api-token-auth/', views.obtain_auth_token)
 
