@@ -28,6 +28,8 @@ router = routers.SimpleRouter()
 router.register(r'users', views.UserListViewset)
 
 router.register(r'analysis', analysisviews.AnalysisViewset)
+router.register(r'vectors', analysisviews.VectorViewset)
+router.register(r'messgroessen', analysisviews.MessgroesseViewset)
 
 urlpatterns = [
 

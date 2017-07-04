@@ -7,8 +7,14 @@ from models import Analysis, MessGroese, Vector
 # Register your models here.
 
 
+class AnalysisModel(admin.ModelAdmin):
+    model = Analysis
+    filter_horizontal = ('vectors','messgroesen')
 
-admin.register(Analysis)(admin.ModelAdmin)
+
+
+
+admin.register(Analysis)(AnalysisModel)
 admin.register(MessGroese)(admin.ModelAdmin)
 admin.register(Vector)(admin.ModelAdmin)
 
