@@ -20,7 +20,7 @@ class Vector(models.Model):
 
 class MessGroesse(models.Model):
     name = models.CharField(_('name'), unique=True, max_length=40)
-    description = models.CharField(_('description'), max_length=50)
+    description = models.CharField(_('description'), max_length=50, null=True, blank=True)
 
     class Meta:
         verbose_name = _('messgroese')
@@ -32,13 +32,13 @@ class MessGroesse(models.Model):
 
 class Filter(models.Model):
     filter = models.CharField(_('filter'), max_length=500)
-    description = models.CharField(_('description'), max_length=50)
+    description = models.CharField(_('description'), max_length=50, null=True, blank=True)
 
 
 class Analysis(models.Model):
     name = models.CharField(_('name'), unique=False, max_length=40)
     datasource = models.CharField(_('datasource'), max_length=40)
-    description = models.CharField(_('name'), max_length=100)
+    description = models.CharField(_('name'), max_length=100, null=True, blank=True)
     vectors = models.ManyToManyField(Vector)
     messgroesen = models.ManyToManyField(MessGroesse)
     filters = models.ManyToManyField(Filter)
