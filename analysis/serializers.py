@@ -1,6 +1,6 @@
 from rest_framework import serializers
 
-from analysis.models import Analysis, Vector, MessGroese
+from analysis.models import Analysis, Vector, MessGroesse
 
 
 class VectorSerializer(serializers.ModelSerializer):
@@ -11,7 +11,7 @@ class VectorSerializer(serializers.ModelSerializer):
 
 class MessgroesseSerializer(serializers.ModelSerializer):
     class Meta:
-        model = MessGroese
+        model = MessGroesse
         fields = '__all__'
 
 

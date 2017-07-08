@@ -1,17 +1,13 @@
 # -*- coding: utf-8 -*-placeholder1
 from __future__ import unicode_literals
-
 from django.db import models
 from django.utils.translation import ugettext_lazy as _
 
 
 class Vector(models.Model):
     name = models.CharField(_('name'), max_length=40)
-    wert1 = models.IntegerField(_('wert1'))
-    wert2 = models.IntegerField(_('wert2'))
-    wert3 = models.IntegerField(_('wert3'))
-    wert4 = models.IntegerField(_('wert4'))
-    wert5 = models.IntegerField(_('wert5'))
+    timeslice_start = models.IntegerField(_('timeslice start'))
+    timeslice_end = models.IntegerField(_('timeslice end'))
 
     class Meta:
         verbose_name = _('vector')
@@ -21,8 +17,10 @@ class Vector(models.Model):
         return self.name
 
 
-class MessGroese(models.Model):
+
+class MessGroesse(models.Model):
     name = models.CharField(_('name'), unique=True, max_length=40)
+    description = models.CharField(_('description'), max_length=50)
 
     class Meta:
         verbose_name = _('messgroese')
@@ -32,15 +30,18 @@ class MessGroese(models.Model):
         return self.name
 
 
+class Filter(models.Model):
+    filter = models.CharField(_('filter'), max_length=500)
+    description = models.CharField(_('description'), max_length=50)
+
+
 class Analysis(models.Model):
     name = models.CharField(_('name'), unique=False, max_length=40)
-    frequency = models.IntegerField(_('frequency'))
     datasource = models.CharField(_('datasource'), max_length=40)
-    placeholder1 = models.CharField(_('placeholder1'), max_length=40)
-    placeholder2 = models.CharField(_('placeholder2'), max_length=40)
-    placeholder3 = models.CharField(_('placeholder3'), max_length=40)
+    description = models.CharField(_('name'), max_length=100)
     vectors = models.ManyToManyField(Vector)
-    messgroesen = models.ManyToManyField(MessGroese)
+    messgroesen = models.ManyToManyField(MessGroesse)
+    filters = models.ManyToManyField(Filter)
 
     class Meta:
         verbose_name = _('analysis')

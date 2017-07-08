@@ -6,7 +6,7 @@ from rest_framework import viewsets
 from serializers import AnalysisSerializer, VectorSerializer, MessgroesseSerializer
 
 # Create your views here.
-from analysis.models import Analysis, Vector, MessGroese
+from analysis.models import Analysis, Vector, MessGroesse
 
 
 class AnalysisViewset(viewsets.ModelViewSet):
@@ -20,5 +20,5 @@ class VectorViewset(viewsets.ModelViewSet):
 
 
 class MessgroesseViewset(viewsets.ModelViewSet):
-    queryset = MessGroese.objects.all()
+    queryset = MessGroesse.objects.all()
     serializer_class = MessgroesseSerializer
