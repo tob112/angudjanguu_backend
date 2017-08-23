@@ -18,7 +18,7 @@ class TeamModel(admin.ModelAdmin):
 class MatchModel(admin.ModelAdmin):
     model = Match
     list_display = ['datum', 'team_1', 'team_2', 'goals_team_1', 'goals_team_2', ]
-    readonly_fields = ('winner',)
+    readonly_fields = ('winner', 'loser')
 
 
 class PlayaModel(admin.ModelAdmin):

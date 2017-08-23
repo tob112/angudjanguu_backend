@@ -42,10 +42,22 @@ class Team(models.Model):
     def __unicode__(self):
         return self.team_name
 
-    # def save(self, *args, **kwargs):
-    #     self.win_percentage = {{self.victorys / self.victorys + self.defeats * 100 | 2}}
-    #
-    #     return super(Team, self).save(*args, **kwargs)
+    def add_victory(self):
+        self.victorys += 1
+
+    def add_defeat(self):
+        self.defeats += 1
+
+    def add_goals(self, goals):
+        self.goals += goals
+
+    def add_own_goals(self, own_goals):
+        self.own_goals += own_goals
+
+        # def save(self, *args, **kwargs):
+        #     self.win_percentage = {{self.victorys / self.victorys + self.defeats * 100 | 2}}
+        #
+        #     return super(Team, self).save(*args, **kwargs)
 
 
 class Match(models.Model):
@@ -57,20 +69,40 @@ class Match(models.Model):
     goals_team_2 = models.IntegerField(_('goals team 2'), null=False, default=0,
                                        validators=[MaxValueValidator(11), MinValueValidator(0)])
     winner = models.CharField(_('winner'), max_length=30, editable=False)
+    loser = models.CharField(_('loser'), max_length=30, default='change_me', editable=False)
     excuse = models.CharField(_('excuse'), max_length=200, default='unlucky', null=False)
 
     class Meta:
         verbose_name = _('match')
         verbose_name_plural = _('matches')
 
-    def save(self, *args, **kwargs):
+    def calc_match_result(self, goals_team_1, goals_team_2):
         if self.goals_team_1 == self.goals_team_2:
             raise ValueError('ties are not allowed')
 
         if self.goals_team_1 > self.goals_team_2:
-            self.winner = self.team_1.team_name
+            self.team_1.add_goals(self.goals_team_1)
+            self.team_2.add_own_goals(self.goals_team_1)
+            return {'winner': self.team_1, 'loser': self.team_2}
+
         elif self.goals_team_2 > self.goals_team_1:
-            self.winner = self.team_2.team_name
+            self.team_2.add_goals(self.goals_team_2)
+            self.team_2.add_own_goals(self.goals_team_1)
+            return {'winner': self.team_2, 'loser': self.team_1}
+
+    # TODO refactor add_goals und add_own_goals
+    def save(self, *args, **kwargs):
+
+        result = self.calc_match_result(self.goals_team_1, self.goals_team_2)
+
+        team_match_winner = result['winner']
+        team_match_loser = result['loser']
+
+        self.winner = team_match_winner.team_name
+        self.loser = team_match_loser.team_name
+
+        team_match_winner.add_victory()
+        team_match_loser.add_defeat()
 
         return super(Match, self).save(*args, **kwargs)
 
