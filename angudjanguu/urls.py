@@ -24,12 +24,18 @@ from authentication import views
 from analysis import views as analysisviews
 from rest_framework_jwt.views import refresh_jwt_token
 
+from kicker.views import TeamViewset, MatchViewset, PlayaViewset
+
 router = routers.SimpleRouter()
 router.register(r'users', views.UserListViewset)
 
 router.register(r'analysis', analysisviews.AnalysisViewset)
 router.register(r'vectors', analysisviews.VectorViewset)
 router.register(r'messgroessen', analysisviews.MessgroesseViewset)
+
+router.register(r'teams', TeamViewset)
+router.register(r'matches', MatchViewset)
+router.register(r'playas', PlayaViewset)
 
 urlpatterns = [
 

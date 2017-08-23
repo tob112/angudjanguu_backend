@@ -31,7 +31,7 @@ class Team(models.Model):
     defeats = models.IntegerField(_('defeats'), default=0, editable=False)
     goals = models.IntegerField(_('goals'), default=0, editable=False)
     own_goals = models.IntegerField(_('own goals'), default=0, editable=False)
-    users = models.ManyToManyField(User)
+    playas = models.ManyToManyField(Playa)
     team_icon = models.ImageField(blank=True, null=False, upload_to='pics')
     victory_percentage = models.FloatField(_('win percentage'), default=0)
 
@@ -42,10 +42,10 @@ class Team(models.Model):
     def __unicode__(self):
         return self.team_name
 
-    def save(self, *args, **kwargs):
-        self.win_percentage = {{float(self.victorys) / self.victorys + self.defeats * 100 | 2}}
-
-        return super(Team, self).save(*args, **kwargs)
+    # def save(self, *args, **kwargs):
+    #     self.win_percentage = {{self.victorys / self.victorys + self.defeats * 100 | 2}}
+    #
+    #     return super(Team, self).save(*args, **kwargs)
 
 
 class Match(models.Model):

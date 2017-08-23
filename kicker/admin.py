@@ -12,7 +12,7 @@ from kicker.models import Team, Match, Playa
 class TeamModel(admin.ModelAdmin):
     model = Team
     readonly_fields = ('victorys', 'defeats')
-    filter_horizontal = ('users',)
+    filter_horizontal = ('playas',)
 
 
 class MatchModel(admin.ModelAdmin):
