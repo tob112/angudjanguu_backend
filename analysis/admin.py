@@ -12,7 +12,7 @@ class AnalysisModel(admin.ModelAdmin):
     model = Analysis
     filter_horizontal = ('vectors', 'messgroesen')
 
-
-admin.register(Analysis)(AnalysisModel)
-admin.register(MessGroesse)(admin.ModelAdmin)
-admin.register(Vector)(admin.ModelAdmin)
+#
+# admin.register(Analysis)(AnalysisModel)
+# admin.register(MessGroesse)(admin.ModelAdmin)
+# admin.register(Vector)(admin.ModelAdmin)

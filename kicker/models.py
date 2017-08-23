@@ -10,11 +10,36 @@ from authentication.models import User
 # Create your models here.
 
 #
+
+class Playa(models.Model):
+    user = models.OneToOneField(User, on_delete=models.SET_NULL, related_name="person", null=True, blank=True)
+
+    playa_name = models.CharField(_(' playa name'), max_length=20, unique=True, null=False)
+    goals = models.IntegerField(_('goals'), default=0)
+    own_goals = models.IntegerField(_('own_goals'), default=0)
+    victorys = models.IntegerField(_('victorys'), default=0)
+    defeats = models.IntegerField(_('defeats'), default=0)
+
+    def __unicode__(self):
+        return self.playa_name
+
+    class Meta:
+        verbose_name = _('playa')
+        verbose_name_plural = _('playas')
+
+
 class Team(models.Model):
-    team_name = models.CharField(_('team_name'), max_length=20)
+    team_name = models.CharField(_('team_name'), max_length=20, unique=True)
     victorys = models.IntegerField(_('victorys'), default=0, editable=False)
     defeats = models.IntegerField(_('defeats'), default=0, editable=False)
+    goals = models.IntegerField(_('goals'), default=0)
+    own_goals = models.IntegerField(_('own_goals'), default=0)
     users = models.ManyToManyField(User)
+    team_icon = models.ImageField(blank=True, null=False, upload_to='pics')
+
+    class Meta:
+        verbose_name = _('team')
+        verbose_name_plural = _('teams')
 
     def __unicode__(self):
         return self.team_name
@@ -22,22 +47,29 @@ class Team(models.Model):
 
 class Match(models.Model):
     datum = models.DateTimeField(_('datum'), null=False)
-
     team_1 = models.ForeignKey(Team, on_delete=models.CASCADE, null=False, related_name='team_1')
     team_2 = models.ForeignKey(Team, on_delete=models.CASCADE, null=False, related_name='team_2')
+    goals_team_1 = models.IntegerField(_('goals_team_1'), null=False, default=0,
+                                       validators=[MaxValueValidator(11), MinValueValidator(0)])
+    goals_team_2 = models.IntegerField(_('goals_team_2'), null=False, default=0,
+                                       validators=[MaxValueValidator(11), MinValueValidator(0)])
+    winner = models.CharField(_('winner'), max_length=30, editable=False)
+    excuse = models.CharField(_('excuse'), max_length=200, default='unlucky', null=False)
 
-    goals_team_1 = models.IntegerField(_('goals_team_1'), null=False, default=0)
-    goals_team_2 = models.IntegerField(_('goals_team_2'), null=False, default=0)
-    result = models.CharField(_('result'), max_length=30, editable=False)
+    class Meta:
+        verbose_name = _('match')
+        verbose_name_plural = _('matches')
 
     def save(self, *args, **kwargs):
-
         if self.goals_team_1 == self.goals_team_2:
             raise ValueError('ties are not allowed')
 
         if self.goals_team_1 > self.goals_team_2:
-            self.result = self.team_1.team_name
-        elif self.goals_team_2 < self.goals_team_1:
-            self.result = self.team_2.team_name
+            self.winner = self.team_1.team_name
+        elif self.goals_team_2 > self.goals_team_1:
+            self.winner = self.team_2.team_name
 
         return super(Match, self).save(*args, **kwargs)
+
+    def __unicode__(self):
+        return '{}_{}_{}'.format(self.datum, self.team_1.id, self.team_2.id)

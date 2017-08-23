@@ -9,15 +9,10 @@ from .managers import UserManager
 
 class User(AbstractBaseUser):
     email = models.EmailField(_('email address'), unique=True)
-    name = models.CharField(_('name'), max_length=30, blank=True)
+    first_name = models.CharField(_('first name'), max_length=30, blank=True)
+    last_name = models.CharField(_('last name'), max_length=30, blank=True)
     is_admin = models.BooleanField(_('is admin'), default=False)
     is_active = models.BooleanField(_('active'), default=True)
-
-    goals = models.IntegerField(_('goals'), default=0)
-    own_goals = models.IntegerField(_('own_goals'), default=0)
-    victorys = models.IntegerField(_('victorys'), default=0)
-    defeats = models.IntegerField(_('defeats'), default=0)
-
 
     objects = UserManager()
 
@@ -32,10 +27,10 @@ class User(AbstractBaseUser):
         return self.email
 
     def get_full_name(self):
-        return self.name
+        return self.first_name + self.last_name
 
     def get_short_name(self):
-        return self.name
+        return self.first_name
 
     @property
     def is_superuser(self):
