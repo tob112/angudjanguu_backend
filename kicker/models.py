@@ -7,16 +7,12 @@ from django.utils.translation import ugettext_lazy as _
 from authentication.models import User
 
 
-# Create your models here.
-
-#
-
 class Playa(models.Model):
     user = models.OneToOneField(User, on_delete=models.SET_NULL, related_name="person", null=True, blank=True)
 
     playa_name = models.CharField(_(' playa name'), max_length=20, unique=True, null=False)
     goals = models.IntegerField(_('goals'), default=0)
-    own_goals = models.IntegerField(_('own_goals'), default=0)
+    own_goals = models.IntegerField(_('own goals'), default=0)
     victorys = models.IntegerField(_('victorys'), default=0)
     defeats = models.IntegerField(_('defeats'), default=0)
 
@@ -32,8 +28,8 @@ class Team(models.Model):
     team_name = models.CharField(_('team_name'), max_length=20, unique=True)
     victorys = models.IntegerField(_('victorys'), default=0, editable=False)
     defeats = models.IntegerField(_('defeats'), default=0, editable=False)
-    goals = models.IntegerField(_('goals'), default=0)
-    own_goals = models.IntegerField(_('own_goals'), default=0)
+    goals = models.IntegerField(_('goals'), default=0, editable=False)
+    own_goals = models.IntegerField(_('own goals'), default=0, editable=False)
     users = models.ManyToManyField(User)
     team_icon = models.ImageField(blank=True, null=False, upload_to='pics')
 
@@ -49,9 +45,9 @@ class Match(models.Model):
     datum = models.DateTimeField(_('datum'), null=False)
     team_1 = models.ForeignKey(Team, on_delete=models.CASCADE, null=False, related_name='team_1')
     team_2 = models.ForeignKey(Team, on_delete=models.CASCADE, null=False, related_name='team_2')
-    goals_team_1 = models.IntegerField(_('goals_team_1'), null=False, default=0,
+    goals_team_1 = models.IntegerField(_('goals team 1'), null=False, default=0,
                                        validators=[MaxValueValidator(11), MinValueValidator(0)])
-    goals_team_2 = models.IntegerField(_('goals_team_2'), null=False, default=0,
+    goals_team_2 = models.IntegerField(_('goals team 2'), null=False, default=0,
                                        validators=[MaxValueValidator(11), MinValueValidator(0)])
     winner = models.CharField(_('winner'), max_length=30, editable=False)
     excuse = models.CharField(_('excuse'), max_length=200, default='unlucky', null=False)
