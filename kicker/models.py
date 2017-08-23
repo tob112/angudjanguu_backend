@@ -3,6 +3,7 @@ from __future__ import unicode_literals
 
 from django.core.validators import MaxValueValidator, MinValueValidator
 from django.db import models
+from django.template.defaultfilters import floatformat
 from django.utils.translation import ugettext_lazy as _
 from authentication.models import User
 
@@ -32,6 +33,7 @@ class Team(models.Model):
     own_goals = models.IntegerField(_('own goals'), default=0, editable=False)
     users = models.ManyToManyField(User)
     team_icon = models.ImageField(blank=True, null=False, upload_to='pics')
+    victory_percentage = models.FloatField(_('win percentage'), default=0)
 
     class Meta:
         verbose_name = _('team')
@@ -39,6 +41,11 @@ class Team(models.Model):
 
     def __unicode__(self):
         return self.team_name
+
+    def save(self, *args, **kwargs):
+        self.win_percentage = {{float(self.victorys) / self.victorys + self.defeats * 100 | 2}}
+
+        return super(Team, self).save(*args, **kwargs)
 
 
 class Match(models.Model):
