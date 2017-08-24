@@ -57,19 +57,21 @@ class Team(models.Model):
     def save(self, *args, **kwargs):
         try:
             self.victory_percentage = (self.victorys * 100) / (self.victorys + self.defeats)
-        except ValueError as e:
+        except Exception as e:
             pass
         return super(Team, self).save(*args, **kwargs)
 
 
 class Match(models.Model):
-    datum = models.DateTimeField(_('datum'), null=False)
+    datum = models.DateField(_('datum'), null=False)
     team_1 = models.ForeignKey(Team, on_delete=models.CASCADE, null=False, related_name='team_1')
     team_2 = models.ForeignKey(Team, on_delete=models.CASCADE, null=False, related_name='team_2')
     goals_team_1 = models.IntegerField(_('goals team 1'), null=False, default=0,
                                        validators=[MaxValueValidator(9), MinValueValidator(0)])
     goals_team_2 = models.IntegerField(_('goals team 2'), null=False, default=0,
                                        validators=[MaxValueValidator(9), MinValueValidator(0)])
+
+
     winner = models.CharField(_('winner'), max_length=30, editable=False)
     loser = models.CharField(_('loser'), max_length=30, editable=False)
 

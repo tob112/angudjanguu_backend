@@ -24,4 +24,3 @@ class MatchSerializer(serializers.ModelSerializer):
     class Meta:
         model = Match
         fields = ('datum', 'team_1', 'team_2', 'goals_team_1', 'goals_team_2', 'winner', 'loser')
-
