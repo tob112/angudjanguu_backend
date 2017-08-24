@@ -4,14 +4,14 @@ from __future__ import unicode_literals
 from django.shortcuts import render
 from rest_framework import viewsets
 
-from kicker.models import Playa, Team, Match
+from kicker.models import KickerProfile, Team, Match
 from serializers import TeamSerializer, PlayaSerializer, MatchSerializer
 
 
 # Create your views here.
 
 class PlayaViewset(viewsets.ModelViewSet):
-    queryset = Playa.objects.all()
+    queryset = KickerProfile.objects.all()
     serializer_class = PlayaSerializer
 
 

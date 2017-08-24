@@ -35,7 +35,7 @@ router.register(r'messgroessen', analysisviews.MessgroesseViewset)
 
 router.register(r'teams', TeamViewset)
 router.register(r'matches', MatchViewset)
-router.register(r'playas', PlayaViewset)
+router.register(r'kicker_profiles', PlayaViewset)
 
 urlpatterns = [
 

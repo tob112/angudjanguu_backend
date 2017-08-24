@@ -1,12 +1,12 @@
 from rest_framework import serializers
 
-from kicker.models import Playa, Team, Match
+from kicker.models import KickerProfile, Team, Match
 
 
 class PlayaSerializer(serializers.ModelSerializer):
     class Meta:
-        model = Playa
-        fields = ('playa_name', 'goals', 'victorys', 'defeats', 'own_goals')
+        model = KickerProfile
+        fields = ('kicker_display_name', 'goals', 'victorys', 'defeats', 'own_goals')
 
 
 class TeamSerializer(serializers.ModelSerializer):
@@ -14,7 +14,7 @@ class TeamSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Team
-        fields = ('team_name', 'playas', 'victorys', 'defeats', 'goals', 'victory_percentage', 'own_goals')
+        fields = ('team_name', 'kicker_profiles', 'victorys', 'defeats', 'goals', 'victory_percentage', 'own_goals')
 
 
 class MatchSerializer(serializers.ModelSerializer):

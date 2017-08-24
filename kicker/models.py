@@ -8,21 +8,21 @@ from django.utils.translation import ugettext_lazy as _
 from authentication.models import User
 
 
-class Playa(models.Model):
+class KickerProfile(models.Model):
     user = models.OneToOneField(User, on_delete=models.SET_NULL, related_name="person", null=True, blank=True)
 
-    playa_name = models.CharField(_(' playa name'), max_length=20, unique=True, null=False)
+    kicker_display_name = models.CharField(_(' playa name'), max_length=20, unique=True, null=False)
     goals = models.IntegerField(_('goals'), default=0)
     own_goals = models.IntegerField(_('own goals'), default=0)
     victorys = models.IntegerField(_('victorys'), default=0)
     defeats = models.IntegerField(_('defeats'), default=0)
 
     def __unicode__(self):
-        return self.playa_name
+        return self.kicker_display_name
 
     class Meta:
-        verbose_name = _('playa')
-        verbose_name_plural = _('playas')
+        verbose_name = _('kicker_profile')
+        verbose_name_plural = _('kicker_Profiles')
 
 
 class Team(models.Model):
@@ -31,9 +31,9 @@ class Team(models.Model):
     defeats = models.IntegerField(_('defeats'), default=0, editable=False)
     goals = models.IntegerField(_('goals'), default=0, editable=False)
     own_goals = models.IntegerField(_('own goals'), default=0, editable=False)
-    playas = models.ManyToManyField(Playa)
+    kicker_profiles = models.ManyToManyField(KickerProfile)
     team_icon = models.ImageField(blank=True, null=False, upload_to='pics')
-    victory_percentage = models.FloatField(_('win percentage'), default=0)
+    victory_percentage = models.FloatField(_('win percentage'), default=0, editable=False)
 
     class Meta:
         verbose_name = _('team')
@@ -54,10 +54,12 @@ class Team(models.Model):
     def add_own_goals(self, own_goals):
         self.own_goals += own_goals
 
-        # def save(self, *args, **kwargs):
-        #     self.win_percentage = {{self.victorys / self.victorys + self.defeats * 100 | 2}}
-        #
-        #     return super(Team, self).save(*args, **kwargs)
+    def save(self, *args, **kwargs):
+        try:
+            self.victory_percentage = (self.victorys * 100) / (self.victorys + self.defeats)
+        except Exception as e:
+            pass
+        return super(Team, self).save(*args, **kwargs)
 
 
 class Match(models.Model):
@@ -80,15 +82,15 @@ class Match(models.Model):
         if self.goals_team_1 == self.goals_team_2:
             raise ValueError('ties are not allowed')
 
+        result = {}
+
         if self.goals_team_1 > self.goals_team_2:
-            self.team_1.add_goals(self.goals_team_1)
-            self.team_2.add_own_goals(self.goals_team_1)
-            return {'winner': self.team_1, 'loser': self.team_2}
+            result = {'winner': self.team_1, 'loser': self.team_2}
 
         elif self.goals_team_2 > self.goals_team_1:
-            self.team_2.add_goals(self.goals_team_2)
-            self.team_2.add_own_goals(self.goals_team_1)
-            return {'winner': self.team_2, 'loser': self.team_1}
+            result = {'winner': self.team_2, 'loser': self.team_1}
+
+        return result
 
     # TODO refactor add_goals und add_own_goals
     def save(self, *args, **kwargs):
@@ -103,6 +105,15 @@ class Match(models.Model):
 
         team_match_winner.add_victory()
         team_match_loser.add_defeat()
+
+        self.team_1.add_goals(self.goals_team_1)
+        self.team_1.add_own_goals(self.goals_team_2)
+
+        self.team_2.add_goals(self.goals_team_2)
+        self.team_2.add_own_goals(self.goals_team_1)
+
+        self.team_1.save()
+        self.team_2.save()
 
         return super(Match, self).save(*args, **kwargs)
 

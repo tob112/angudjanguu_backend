@@ -2,7 +2,7 @@
 from __future__ import unicode_literals
 
 from django.contrib import admin
-from kicker.models import Team, Match, Playa
+from kicker.models import Team, Match, KickerProfile
 
 
 # Register your models here.
@@ -12,7 +12,7 @@ from kicker.models import Team, Match, Playa
 class TeamModel(admin.ModelAdmin):
     model = Team
     readonly_fields = ('victorys', 'defeats')
-    filter_horizontal = ('playas',)
+    filter_horizontal = ('kicker_profiles',)
 
 
 class MatchModel(admin.ModelAdmin):
@@ -22,7 +22,7 @@ class MatchModel(admin.ModelAdmin):
 
 
 class PlayaModel(admin.ModelAdmin):
-    module = Playa
+    module = KickerProfile
     readonly_fields = ['goals', 'own_goals', 'victorys', 'defeats', ]
 
 
@@ -31,4 +31,4 @@ admin.register(Team)(TeamModel)
 # admin.register(Vector)(admin.ModelAdmin)
 
 admin.register(Match)(MatchModel)
-admin.register(Playa)(PlayaModel)
+admin.register(KickerProfile)(PlayaModel)
