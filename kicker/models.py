@@ -11,7 +11,7 @@ from authentication.models import User
 class KickerProfile(models.Model):
     user = models.OneToOneField(User, on_delete=models.SET_NULL, related_name="person", null=True, blank=True)
 
-    kicker_display_name = models.CharField(_(' playa name'), max_length=20, unique=True, null=False)
+    kicker_display_name = models.CharField(_('display name'), max_length=20, unique=True, null=False)
     goals = models.IntegerField(_('goals'), default=0)
     goals_against = models.IntegerField(_('goals against'), default=0)
     victorys = models.IntegerField(_('victorys'), default=0)
@@ -33,7 +33,7 @@ class Team(models.Model):
     goals_against = models.IntegerField(_('goals_against'), default=0, editable=False)
     kicker_profiles = models.ManyToManyField(KickerProfile)
     team_icon = models.ImageField(blank=True, null=False, upload_to='pics')
-    victory_percentage = models.FloatField(_('win percentage'), default=0, editable=False)
+    victory_percentage = models.FloatField(_('victory percentage'), default=0, editable=False)
 
     class Meta:
         verbose_name = _('team')
@@ -71,7 +71,8 @@ class Match(models.Model):
     goals_team_2 = models.IntegerField(_('goals team 2'), null=False, default=0,
                                        validators=[MaxValueValidator(9), MinValueValidator(0)])
     winner = models.CharField(_('winner'), max_length=30, editable=False)
-    loser = models.CharField(_('loser'), max_length=30, default='change_me', editable=False)
+    loser = models.CharField(_('loser'), max_length=30, editable=False)
+
     # excuse = models.CharField(_('excuse'), max_length=200, default='unlucky', null=False)
 
     class Meta:
@@ -92,7 +93,6 @@ class Match(models.Model):
 
         return result
 
-    # TODO refactor add_goals und add_goals_against
     def save(self, *args, **kwargs):
 
         result = self.calc_match_result(self.goals_team_1, self.goals_team_2)
