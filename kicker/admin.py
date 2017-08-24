@@ -11,7 +11,7 @@ from kicker.models import Team, Match, KickerProfile
 
 class TeamModel(admin.ModelAdmin):
     model = Team
-    readonly_fields = ('victorys', 'defeats')
+    readonly_fields = ['goals', 'goals_against', 'victorys', 'defeats', 'victory_percentage']
     filter_horizontal = ('kicker_profiles',)
 
 
@@ -21,9 +21,9 @@ class MatchModel(admin.ModelAdmin):
     readonly_fields = ('winner', 'loser')
 
 
-class PlayaModel(admin.ModelAdmin):
+class KickerProfileModel(admin.ModelAdmin):
     module = KickerProfile
-    readonly_fields = ['goals', 'own_goals', 'victorys', 'defeats', ]
+    readonly_fields = ['goals', 'goals_against', 'victorys', 'defeats', ]
 
 
 admin.register(Team)(TeamModel)
@@ -31,4 +31,4 @@ admin.register(Team)(TeamModel)
 # admin.register(Vector)(admin.ModelAdmin)
 
 admin.register(Match)(MatchModel)
-admin.register(KickerProfile)(PlayaModel)
+admin.register(KickerProfile)(KickerProfileModel)

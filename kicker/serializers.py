@@ -6,7 +6,7 @@ from kicker.models import KickerProfile, Team, Match
 class PlayaSerializer(serializers.ModelSerializer):
     class Meta:
         model = KickerProfile
-        fields = ('kicker_display_name', 'goals', 'victorys', 'defeats', 'own_goals')
+        fields = ('kicker_display_name', 'goals', 'victorys', 'defeats', 'goals_against')
 
 
 class TeamSerializer(serializers.ModelSerializer):
@@ -14,7 +14,7 @@ class TeamSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Team
-        fields = ('team_name', 'kicker_profiles', 'victorys', 'defeats', 'goals', 'victory_percentage', 'own_goals')
+        fields = ('team_name', 'kicker_profiles', 'victorys', 'defeats', 'goals', 'victory_percentage', 'goals_against')
 
 
 class MatchSerializer(serializers.ModelSerializer):

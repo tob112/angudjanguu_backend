@@ -13,7 +13,7 @@ class KickerProfile(models.Model):
 
     kicker_display_name = models.CharField(_(' playa name'), max_length=20, unique=True, null=False)
     goals = models.IntegerField(_('goals'), default=0)
-    own_goals = models.IntegerField(_('own goals'), default=0)
+    goals_against = models.IntegerField(_('goals against'), default=0)
     victorys = models.IntegerField(_('victorys'), default=0)
     defeats = models.IntegerField(_('defeats'), default=0)
 
@@ -21,8 +21,8 @@ class KickerProfile(models.Model):
         return self.kicker_display_name
 
     class Meta:
-        verbose_name = _('kicker_profile')
-        verbose_name_plural = _('kicker_Profiles')
+        verbose_name = _('kicker Profile')
+        verbose_name_plural = _('kicker Profiles')
 
 
 class Team(models.Model):
@@ -30,7 +30,7 @@ class Team(models.Model):
     victorys = models.IntegerField(_('victorys'), default=0, editable=False)
     defeats = models.IntegerField(_('defeats'), default=0, editable=False)
     goals = models.IntegerField(_('goals'), default=0, editable=False)
-    own_goals = models.IntegerField(_('own goals'), default=0, editable=False)
+    goals_against = models.IntegerField(_('goals_against'), default=0, editable=False)
     kicker_profiles = models.ManyToManyField(KickerProfile)
     team_icon = models.ImageField(blank=True, null=False, upload_to='pics')
     victory_percentage = models.FloatField(_('win percentage'), default=0, editable=False)
@@ -51,13 +51,13 @@ class Team(models.Model):
     def add_goals(self, goals):
         self.goals += goals
 
-    def add_own_goals(self, own_goals):
-        self.own_goals += own_goals
+    def add_goals_against(self, goals_against):
+        self.goals_against += goals_against
 
     def save(self, *args, **kwargs):
         try:
             self.victory_percentage = (self.victorys * 100) / (self.victorys + self.defeats)
-        except Exception as e:
+        except ValueError as e:
             pass
         return super(Team, self).save(*args, **kwargs)
 
@@ -67,12 +67,12 @@ class Match(models.Model):
     team_1 = models.ForeignKey(Team, on_delete=models.CASCADE, null=False, related_name='team_1')
     team_2 = models.ForeignKey(Team, on_delete=models.CASCADE, null=False, related_name='team_2')
     goals_team_1 = models.IntegerField(_('goals team 1'), null=False, default=0,
-                                       validators=[MaxValueValidator(11), MinValueValidator(0)])
+                                       validators=[MaxValueValidator(9), MinValueValidator(0)])
     goals_team_2 = models.IntegerField(_('goals team 2'), null=False, default=0,
-                                       validators=[MaxValueValidator(11), MinValueValidator(0)])
+                                       validators=[MaxValueValidator(9), MinValueValidator(0)])
     winner = models.CharField(_('winner'), max_length=30, editable=False)
     loser = models.CharField(_('loser'), max_length=30, default='change_me', editable=False)
-    excuse = models.CharField(_('excuse'), max_length=200, default='unlucky', null=False)
+    # excuse = models.CharField(_('excuse'), max_length=200, default='unlucky', null=False)
 
     class Meta:
         verbose_name = _('match')
@@ -92,7 +92,7 @@ class Match(models.Model):
 
         return result
 
-    # TODO refactor add_goals und add_own_goals
+    # TODO refactor add_goals und add_goals_against
     def save(self, *args, **kwargs):
 
         result = self.calc_match_result(self.goals_team_1, self.goals_team_2)
@@ -107,10 +107,10 @@ class Match(models.Model):
         team_match_loser.add_defeat()
 
         self.team_1.add_goals(self.goals_team_1)
-        self.team_1.add_own_goals(self.goals_team_2)
+        self.team_1.add_goals_against(self.goals_team_2)
 
         self.team_2.add_goals(self.goals_team_2)
-        self.team_2.add_own_goals(self.goals_team_1)
+        self.team_2.add_goals_against(self.goals_team_1)
 
         self.team_1.save()
         self.team_2.save()
