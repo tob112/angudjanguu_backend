@@ -71,7 +71,6 @@ class Match(models.Model):
     goals_team_2 = models.IntegerField(_('goals team 2'), null=False, default=0,
                                        validators=[MaxValueValidator(9), MinValueValidator(0)])
 
-
     winner = models.CharField(_('winner'), max_length=30, editable=False)
     loser = models.CharField(_('loser'), max_length=30, editable=False)
 
@@ -120,4 +119,51 @@ class Match(models.Model):
         return super(Match, self).save(*args, **kwargs)
 
     def __unicode__(self):
-        return '{}_{}_{}'.format(self.datum, self.team_1.id, self.team_2.id)
+        return '{}: {} vs {} -> {}:{}'.format(self.datum, self.team_1.team_name, self.team_2.team_name,
+                                              self.goals_team_1, self.goals_team_2)
+
+
+class Game(models.Model):
+    datum = models.DateField(_('datum'), null=False, auto_now_add=True, blank=True)
+    name = models.CharField(max_length=100, default='no name')
+    matches = models.ManyToManyField(Match)
+    team_one_victorys = models.IntegerField(_('team one victorys'), default=0, null=False)
+    team_two_victorys = models.IntegerField(_('team two victorys'), default=0, null=False)
+    game_winner = models.CharField(_('game winner'), max_length=30)
+    game_loser = models.CharField(_('game loser'), max_length=30)
+
+    def __unicode__(self):
+        return '{}'.format(self.name)
+
+    class Meta:
+        verbose_name = _('game')
+        verbose_name_plural = _('games')
+
+    def calc_game_score(self, matches):
+        counter_team_1 = 0
+        counter_team_2 = 0
+
+        result = {}
+
+        for match in matches.all():
+            if match.winner == match.team_1.team_name:
+                counter_team_1 += 1
+            if match.winner == match.team_2.team_name:
+                counter_team_2 += 1
+
+        result['team_one'] = counter_team_1
+        result['team_two'] = counter_team_2
+
+        return result
+
+    def save(self, *args, **kwargs):
+
+        if not self.id:
+            super(Game, self).save(*args, **kwargs)
+
+        result = self.calc_game_score(self.matches)
+
+        self.team_one_victorys = result['team_two']
+        # self.team_two_victorys = result
+
+        return super(Game, self).save(*args, **kwargs)
